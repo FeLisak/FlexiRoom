@@ -4,7 +4,7 @@
 
 **FlexiRoom** - Where space bends to your calendar.
 
-#### Autor do projeto
+### Autor do projeto
 
 [Felipe Karpovas Lisak](https://www.linkedin.com/in/felipelisak/)
 
@@ -91,9 +91,17 @@
 
 ### 3.1. Modelagem do banco de dados (Semana 3)
 
-_Posicione aqui os diagramas de modelos relacionais do seu banco de dados, apresentando todos os esquemas de tabelas e suas relações. Utilize texto para complementar suas explicações, se necessário._
+&emsp; Na década de 1970, a IBM desenvolveu a linguagem SEQUEL (Structured English Query Language) com o objetivo de implementar o modelo relacional proposto por Edgar F. Codd.([[3]](#ref3)) Posteriormente, por questões de marca registrada, o nome foi alterado para SQL (Structured Query Language), que se tornou o padrão para manipulação e consulta de dados em bancos de dados relacionais.([[4]](#ref4)) Esse modelo, conforme descrito por Machado, é o tipo mais comum de banco de dados, no qual os dados são organizados em tabelas compostas por linhas e colunas, e as relações entre os dados são estabelecidas por meio de chaves primárias e estrangeiras.([[5]](#ref5))<br><br>&emsp; Desta maneira, encontra-se abaixo os modelos relacional e físico do Banco de Dados desenvolvidos para o FlexiRoom.
 
-_Posicione também o modelo físico com o Schema do BD (arquivo .sql)_
+<div align="center">
+    <small><strong style="font-size: 12px;">Figura 2 - Modelo relacional do Banco de Dados</strong></small><br>
+        <img src="/assets/modelo-banco.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
+</div>
+
+&emsp; <a href="/scripts/init.sql">Clique aqui</a>acessar o modelo físico com o Schema do Banco de Dados do projeto.
+
+&emsp; Com base na exposição dos modelos relacional e físico, foi possível compreender e justificar as escolhas estruturais adotadas no banco de dados desenvolvido para este projeto. A aplicação desses modelos não apenas garantiu a organização lógica das informações, como também proporcionou uma base sólida para a implementação eficiente do sistema, assegurando integridade, desempenho e escalabilidade no armazenamento e na recuperação dos dados.
 
 ### 3.1.1 BD e Models (Semana 5)
 
@@ -149,3 +157,6 @@ _Relacione também quaisquer outras ideias que você tenha para melhorias futura
 
 <br><a name="ref1">[1]:</a> IFMA – International Facility Management Association. (2020). Space Management Benchmark Report. Disponível em: https://www.ifma.org
 <br><a name="ref2">[2]:</a> Cohn, M. (2004). User stories applied: For agile software development. Addison-Wesley. Disponível em https://www.mountaingoatsoftware.com/books/user-stories-applied
+<br><a name="ref3">[3]:</a> Codd, E. F. (1970). A relational model of data for large shared data banks. Communications of the ACM, 13(6), 377–387. Disponível em: https://dl.acm.org/doi/10.1145/362384.362685
+<br><a name="ref4">[4]:</a> Chamberlin, D. D., & Boyce, R. F. (1974). SEQUEL: A structured English query language. Proceedings of the 1974 ACM SIGFIDET Workshop on Data Description, Access and Control, 249–264. Disponível em: https://dl.acm.org/doi/10.1145/800296.811515
+<br><a name="ref5">[5]:</a> Machado, F. N. R. (2014). Banco de dados: Projeto e implementação (3ª ed.). Érica.
