@@ -27,9 +27,9 @@
 &emsp; Para compreender melhor os usuários-alvo do sistema FlexiRoom, desenvolveu-se uma persona que representa um perfil recorrente em empresas que enfrentam desafios com a gestão de espaços corporativos. A seguir, apresenta-se Lucas Bianconi, um profissional estratégico que lida diariamente com a complexidade de ambientes dinâmicos e que demanda soluções práticas e inteligentes para otimizar processos.
 
 <div align="center">
-  <sub>Figura 1 - Persona</sub>
+  <small><strong style="font-size: 12px;">Figura 1 - Persona</strong></small><br>
     <img src="/assets/wad/Persona.png">
-  <sup>Fonte: O autor, 2025</sup>
+  <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
 </div>
 
 &emsp; Com Lucas, sintetizou-se as dores e aspirações de muitos profissionais envolvidos na organização de recursos físicos dentro das empresas. Ao entender seus desafios, motivações e comportamentos, busca-se alinhar o design e as funcionalidades do FlexiRoom às necessidades reais do mercado corporativo. Esta persona será utilizada como referência central ao longo das decisões de produto, garantindo foco na entrega de valor com eficiência.
@@ -55,7 +55,7 @@
 &emsp; As User Stories abaixo representam funcionalidades centrais do sistema FlexiRoom, focadas em atender as necessidades dos usuários, garantindo simplicidade de uso, eficiência operacional e suporte à tomada de decisões. Cada história foi projetada para entregar valor diretamente ao usuário e facilitar a implementação de soluções práticas no dia a dia corporativo.<br>
 
 <div align="center">
-  <sub>Quadro 1 - User Stories</sub>
+  <small><strong style="font-size: 12px;">Quadro 1 - User Stories</strong></small><br>
 
 | #   | User Story                                                                                                        |
 | --- | ----------------------------------------------------------------------------------------------------------------- |
@@ -63,14 +63,14 @@
 | US2 | Como colaborador, quero reservar salas em um clique, para agilizar o agendamento de reuniões.                     |
 | US3 | Como gestor de espaços, quero relatórios de ocupação por período, para tomar decisões baseadas em dados.          |
 
-<sup>Fonte: O autor, 2025</sup>
+<small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
 
 </div>
 
 <br>&emsp; Essas User Stories são fundamentais para o sucesso do FlexiRoom, pois garantem que o sistema atenda às necessidades reais dos usuários de maneira prática e eficiente. Com foco na simplicidade e agilidade, cada funcionalidade foi pensada para otimizar o uso dos espaços e aumentar a produtividade nas empresas.<br><br>&emsp; A User Story US02 foi selecionada para análise por atender de maneira clara aos critérios do modelo INVEST, amplamente utilizado para a definição de boas histórias de usuário:<br>
 
 <div align="center">
-<sub>Quadro 2 - User Story 2 no Modelo INVEST</sub>
+<small><strong style="font-size: 12px;">Quadro 2 - User Story 2 no Modelo INVEST</strong></small><br>
 
 | Critério        | Contexto no Projeto                                                                                                                                  |
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -81,7 +81,7 @@
 | Small (Pequena) | A história é focada em uma única ação (reserva rápida), o que a torna simples e rápida de ser desenvolvida e entregue.                               |
 | Testável        | É possível criar testes objetivos para validar o sucesso da reserva, garantindo que a funcionalidade atenda aos requisitos esperados.                |
 
-<sup>Fonte: O autor, 2025.</sup>
+<small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
 
 </div>
 
@@ -99,7 +99,7 @@
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
 </div>
 
-&emsp; <a href="/scripts/init.sql">Clique aqui</a>acessar o modelo físico com o Schema do Banco de Dados do projeto.
+<br>&emsp; <a href="/scripts/init.sql">Clique aqui</a> para acessar o modelo físico com o Schema do Banco de Dados do projeto.
 
 &emsp; Com base na exposição dos modelos relacional e físico, foi possível compreender e justificar as escolhas estruturais adotadas no banco de dados desenvolvido para este projeto. A aplicação desses modelos não apenas garantiu a organização lógica das informações, como também proporcionou uma base sólida para a implementação eficiente do sistema, assegurando integridade, desempenho e escalabilidade no armazenamento e na recuperação dos dados.
 
