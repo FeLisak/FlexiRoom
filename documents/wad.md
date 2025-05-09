@@ -89,7 +89,7 @@
 
 ## <a name="c3"></a>3. Projeto da Aplicação Web
 
-### 3.1. Modelagem do banco de dados (Semana 3)
+### 3.1. Modelagem do banco de dados
 
 &emsp; Na década de 1970, a IBM desenvolveu a linguagem SEQUEL (Structured English Query Language) com o objetivo de implementar o modelo relacional proposto por Edgar F. Codd.([[3]](#ref3)) Posteriormente, por questões de marca registrada, o nome foi alterado para SQL (Structured Query Language), que se tornou o padrão para manipulação e consulta de dados em bancos de dados relacionais.([[4]](#ref4)) Esse modelo, conforme descrito por Machado, é o tipo mais comum de banco de dados, no qual os dados são organizados em tabelas compostas por linhas e colunas, e as relações entre os dados são estabelecidas por meio de chaves primárias e estrangeiras.([[5]](#ref5))<br><br>&emsp; Desta maneira, encontra-se abaixo os modelos relacional e físico do Banco de Dados desenvolvidos para o FlexiRoom.
 
@@ -101,7 +101,7 @@
 
 <br>&emsp; <a href="/scripts/init.sql">Clique aqui</a> para acessar o modelo físico com o Schema do Banco de Dados do projeto.
 
-&emsp; Com base na exposição dos modelos relacional e físico, foi possível compreender e justificar as escolhas estruturais adotadas no banco de dados desenvolvido para este projeto. A aplicação desses modelos não apenas garantiu a organização lógica das informações, como também proporcionou uma base sólida para a implementação eficiente do sistema, assegurando integridade, desempenho e escalabilidade no armazenamento e na recuperação dos dados.
+&emsp; O modelo de banco de dados apresentado foi estruturado de forma relacional, com o objetivo de garantir integridade, clareza e escalabilidade na gestão das informações do sistema de reservas de salas.<br><br>&emsp; A tabela `users` armazena os dados dos usuários que realizarão as reservas, utilizando o campo cpf como chave primária, o que garante a unicidade dos registros.<br><br>&emsp; A tabela `rooms` representa as salas disponíveis, contendo atributos como nome, capacidade e status de disponibilidade, também identificadas por uma chave primária (room_id).<br><br>&emsp; A tabela `bookings` centraliza as reservas, relacionando cada uma a um usuário e a uma sala por meio de chaves estrangeiras (user_id e room_id), além de armazenar os horários de início e fim da reserva.<br><br>&emsp; Essa estrutura favorece a normalização dos dados, reduz redundâncias e permite consultas eficientes, como a verificação de disponibilidade de salas ou o histórico de reservas de um usuário. A escolha pelo uso de SERIAL para os identificadores simplifica a geração automática de valores únicos, contribuindo para uma implementação prática e robusta.<br><br>&emsp; Com base na exposição dos modelos relacional e físico, foi possível compreender e justificar as escolhas estruturais adotadas no banco de dados desenvolvido para este projeto. A aplicação desses modelos não apenas garantiu a organização lógica das informações, como também proporcionou uma base sólida para a implementação eficiente do sistema, assegurando integridade, desempenho e escalabilidade no armazenamento e na recuperação dos dados.
 
 ### 3.1.1 BD e Models (Semana 5)
 
