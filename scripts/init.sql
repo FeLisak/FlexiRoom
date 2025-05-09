@@ -23,3 +23,8 @@ CREATE TABLE bookings (
 ALTER TABLE bookings ADD FOREIGN KEY (user_id) REFERENCES users (cpf);
 
 ALTER TABLE bookings ADD FOREIGN KEY (room_id) REFERENCES rooms (room_id);
+
+INSERT INTO users (name, lastname, email)
+VALUES ('Felipe', 'Karpovas Lisak','felipe.lisak@sou.inteli.edu.br'),
+('Joseph', 'Mansur','joseph.mansur@sou.inteli.edu.br'),
+('Lorenzo', 'Ferrari Aggio','lorezo.aggio@sou.inteli.edu.br')
