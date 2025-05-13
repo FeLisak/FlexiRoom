@@ -1,18 +1,20 @@
-CREATE TABLE users (
-  cpf SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
   name varchar(50),
   lastname varchar(100),
-  email varchar(100)
+  email varchar(100),
+  cpf INT,
+  password varchar(36)
 );
 
-CREATE TABLE rooms (
+CREATE TABLE IF NOT EXISTS rooms (
   room_id SERIAL PRIMARY KEY,
   room_name varchar(200),
   status BOOLEAN,
   capacity INT
 );
 
-CREATE TABLE bookings (
+CREATE TABLE IF NOT EXISTS bookings (
   booking_id SERIAL PRIMARY KEY,
   user_id INT,
   room_id INT,
