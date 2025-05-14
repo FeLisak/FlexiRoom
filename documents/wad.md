@@ -119,9 +119,32 @@ _Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. A
 
 _Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View._
 
-### 3.3. Wireframes (Semana 03)
+### 3.3. Wireframes
 
-_Posicione aqui as imagens do wireframe construído para sua solução e, opcionalmente, o link para acesso (mantenha o link sempre público para visualização)._
+&emsp; Os wireframes representam uma etapa fundamental no processo de desenvolvimento de interfaces, pois permitem visualizar a estrutura e a hierarquia dos elementos de uma página antes da implementação visual e funcional.([[6]](#ref6)) Eles funcionam como um esboço funcional, focado na disposição dos componentes e na experiência do usuário, sendo essenciais para validar fluxos de navegação e usabilidade desde as fases iniciais do projeto.([[7]](#ref7)) Além disso, wireframes facilitam a comunicação entre designers, desenvolvedores e stakeholders, reduzindo retrabalhos e garantindo alinhamento de expectativas.([[8]](#ref8))<br><br>&emsp; Abaixo estão as figuras referentes aos Wireframes projetados para esta aplicação.
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Figura 3 - Wireframe da página de Redefinir a senha e colocar o E-Mail para Login</strong></small><br>
+        <img src="/assets/wad/email-changePassword-page.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
+</div>
+<div align="center">
+    <small><strong style="font-size: 12px;">Figura 4 - Wireframe da página de primeiro acesso</strong></small><br>
+        <img src="/assets/wad/signin-page.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
+</div>
+<div align="center">
+    <small><strong style="font-size: 12px;">Figura 5 - Wireframe da página de Login</strong></small><br>
+        <img src="/assets/wad/login-page.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
+</div>
+<div align="center">
+    <small><strong style="font-size: 12px;">Figura 6 - Wireframe da página do catálogo de salas disponíveis</strong></small><br>
+        <img src="/assets/wad/rooms-catalogue-page.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
+</div>
+
+&emsp; A definição dos wireframes apresentados — incluindo as telas de Redefinir Senha, Primeiro Acesso, Login e Catálogo de Salas Disponíveis — foi essencial para estabelecer uma visão clara da navegação e das funcionalidades principais da aplicação. Cada tela foi projetada para garantir uma experiência intuitiva ao usuário, desde o primeiro contato com a plataforma até a visualização dos recursos disponíveis. Com esses esboços, será possível alinhar expectativas, validar fluxos de uso e preparar o terreno para a etapa de desenvolvimento visual e técnico da interface.
 
 ### 3.4. Guia de estilos (Semana 05)
 
@@ -160,3 +183,6 @@ _Relacione também quaisquer outras ideias que você tenha para melhorias futura
 <br><a name="ref3">[3]:</a> Codd, E. F. (1970). A relational model of data for large shared data banks. Communications of the ACM, 13(6), 377–387. Disponível em: https://dl.acm.org/doi/10.1145/362384.362685
 <br><a name="ref4">[4]:</a> Chamberlin, D. D., & Boyce, R. F. (1974). SEQUEL: A structured English query language. Proceedings of the 1974 ACM SIGFIDET Workshop on Data Description, Access and Control, 249–264. Disponível em: https://dl.acm.org/doi/10.1145/800296.811515
 <br><a name="ref5">[5]:</a> Machado, F. N. R. (2014). Banco de dados: Projeto e implementação (3ª ed.). Érica.
+<br><a name="ref6">[6]:</a> Garrett, J. J. (2011). The elements of user experience: User-centered design for the web and beyond (2nd ed.). New Riders. https://www.peachpit.com/store/elements-of-user-experience-user-centered-design-for-the-9780321683687
+<br><a name="ref7">[7]:</a> Tidwell, J. (2010). Designing interfaces: Patterns for effective interaction design (2nd ed.). O’Reilly Media. https://www.oreilly.com/library/view/designing-interfaces-2nd/9781449319274/
+<br><a name="ref8">[8]:</a> Krug, S. (2014). Don't make me think, revisited: A common sense approach to web usability (3rd ed.). New Riders. https://www.sensible.com/dmmt.html
