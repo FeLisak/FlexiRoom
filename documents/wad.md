@@ -103,7 +103,7 @@
 
 &emsp; O modelo de banco de dados apresentado foi estruturado de forma relacional, com o objetivo de garantir integridade, clareza e escalabilidade na gestão das informações do sistema de reservas de salas.<br><br>&emsp; A tabela `users` armazena os dados dos usuários que realizarão as reservas, utilizando o campo cpf como chave primária, o que garante a unicidade dos registros.<br><br>&emsp; A tabela `rooms` representa as salas disponíveis, contendo atributos como nome, capacidade e status de disponibilidade, também identificadas por uma chave primária (room_id).<br><br>&emsp; A tabela `bookings` centraliza as reservas, relacionando cada uma a um usuário e a uma sala por meio de chaves estrangeiras (user_id e room_id), além de armazenar os horários de início e fim da reserva.<br><br>&emsp; Essa estrutura favorece a normalização dos dados, reduz redundâncias e permite consultas eficientes, como a verificação de disponibilidade de salas ou o histórico de reservas de um usuário. A escolha pelo uso de SERIAL para os identificadores simplifica a geração automática de valores únicos, contribuindo para uma implementação prática e robusta.<br><br>&emsp; Com base na exposição dos modelos relacional e físico, foi possível compreender e justificar as escolhas estruturais adotadas no banco de dados desenvolvido para este projeto. A aplicação desses modelos não apenas garantiu a organização lógica das informações, como também proporcionou uma base sólida para a implementação eficiente do sistema, assegurando integridade, desempenho e escalabilidade no armazenamento e na recuperação dos dados.
 
-### 3.1.1 BD e Models (Semana 5)
+### 3.1.1 DB e Models (Semana 5)
 
 _Descreva aqui os Models implementados no sistema web_
 
@@ -146,13 +146,80 @@ _Adicione as setas e explicações sobre como os dados fluem entre o Model, Cont
 
 &emsp; A definição dos wireframes apresentados — incluindo as telas de Redefinir Senha, Primeiro Acesso, Login e Catálogo de Salas Disponíveis — foi essencial para estabelecer uma visão clara da navegação e das funcionalidades principais da aplicação. Cada tela foi projetada para garantir uma experiência intuitiva ao usuário, desde o primeiro contato com a plataforma até a visualização dos recursos disponíveis. Com esses esboços, será possível alinhar expectativas, validar fluxos de uso e preparar o terreno para a etapa de desenvolvimento visual e técnico da interface.
 
-### 3.4. Guia de estilos (Semana 05)
+### 3.4. Guia de estilos
 
-_Descreva aqui orientações gerais para o leitor sobre como utilizar os componentes do guia de estilos de sua solução._
+&emsp; Para padronizar a estilização e organização do projeto, um guia da estilos que conta com Tipografia, Espaçamentos, Curvatura das Bordas, Paleta de Cores, Sombras e Icones foi desenvolvido, conforme as imagens abaixo.
 
-### 3.5. Protótipo de alta fidelidade (Semana 05)
+<div align="center">
+    <small><strong style="font-size: 12px;">Figura 7 - Tipografia</strong></small><br>
+        <img src="/assets/wad/styles-guide/Typography/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 8 - Espaçamentos</strong></small><br>
+        <img src="/assets/wad/styles-guide/Spacing/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 9 - Curvatura das Bordas</strong></small><br>
+        <img src="/assets/wad/styles-guide/Radius/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 10 - Paleta de Cores no modo Claro</strong></small><br>
+        <img src="/assets/wad/styles-guide/Colors/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 11 - Paleta de Cores no modo Escuro</strong></small><br>
+        <img src="/assets/wad/styles-guide/Colors/Dark.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 12 - Sombras</strong></small><br>
+        <img src="/assets/wad/styles-guide/Shadows/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 13 - Icones no modo Claro</strong></small><br>
+        <img src="/assets/wad/styles-guide/Icons/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 14 - Icones no modo Escuro</strong></small><br>
+        <img src="/assets/wad/styles-guide/Icons/Dark.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
+</div>
 
-_Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização)._
+&emsp; Desta forma, tornou-se possível padronizar a estilização do projeto e criar componentes e paginas seguindo um padrão.
+
+### 3.5. Protótipo de alta fidelidade
+
+&emsp; A partir do Guia de Estilos descrito na seção acima, foram criadas telas que dizem respeito ao protótipo de alta fidelidade do projeto, sendo este o mais próximo da Aplicação Final a ser desenvolvida.<br><br>&emsp; Abaixo encontram-se as telas que compõem este protótipo seguindo a ordem na qual os usuários irão utilizar o sistema. 
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Figura 15 - Página de E-Mail</strong></small><br>
+        <img src="/assets/wad/Prototype/OnlyE-mailOrResetPassword.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 16 - Página de E-Mail com Senha</strong></small><br>
+        <img src="/assets/wad/Prototype/E-mailAndPassword.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 17 - Página de Criação de Senha</strong></small><br>
+        <img src="/assets/wad/Prototype/SignInPage.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 18 - Página com a Lista de Usuários (Administrador)</strong></small><br>
+        <img src="/assets/wad/Prototype/UsersList.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 19 - Página de Criação ou Edição de Usuário (Administrador)</strong></small><br>
+        <img src="/assets/wad/Prototype/EditUser.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 20 - Página com a Lista de Salas (Administrador)</strong></small><br>
+        <img src="/assets/wad/Prototype/RoomsList-AdminPage.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 21 - Página de Criação ou Edição de Sala (Administrador)</strong></small><br>
+        <img src="/assets/wad/Prototype/EditRoom.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 22 - Página com a Lista de Salas (Usuário Comum)</strong></small><br>
+        <img src="/assets/wad/Prototype/RoomsList-UserPage.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 23 - Aba para selecionar período de reserva (Usuário Comum)</strong></small><br>
+        <img src="/assets/wad/Prototype/ReserveRoomTab.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 24 - Pop-Up para confirmar reserva (Usuário Comum)</strong></small><br>
+        <img src="/assets/wad/Prototype/ConfirmPop-Up.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 25 - Página para visualizar "Minhas Reservas" (Usuário Comum)</strong></small><br>
+        <img src="/assets/wad/Prototype/MyReservedRoomsList-UserPage.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
+</div>
+
+&emsp; Ao clicar [aqui](https://www.figma.com/design/azZNUyJ9Kh1lLk1Qzkhwpd/FlexiRoom---Design-Final?node-id=105-1333&t=o8sS3sQmLiwzmoJB-1) uma página do sistema de edição de imagens Figma será aberta. Nela, encontram-se o guia de estilos, protótipo de alta fidelidade e os componentes que fazem parte das telas.
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 
