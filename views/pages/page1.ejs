@@ -4,7 +4,7 @@
 <table border="1" id="usersTable">
   <thead>
     <tr>
-      <th>CPF</th>
+      <th>ID</th>
       <th>Nome</th>
       <th>Sobrenome</th>
       <th>Email</th>
@@ -21,7 +21,7 @@
   // Função para buscar usuários da API e renderizar na tabela
   async function fetchUsers() {
     try {
-      const response = await fetch("/users");
+      const response = await fetch("/api/v1/users");
       if (!response.ok) {
         throw new Error("Erro ao buscar usuários");
       }
@@ -34,7 +34,7 @@
         users.forEach((user) => {
           const row = document.createElement("tr");
           row.innerHTML = `
-            <td>${user.cpf}</td>
+            <td>${user.id}</td>
             <td>${user.name}</td>
             <td>${user.lastname}</td>
             <td>${user.email}</td>
