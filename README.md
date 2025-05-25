@@ -1,5 +1,6 @@
-# FlexiRoom
-Where space bends to your calendar.
+<div align="center">
+    <img src="/assets/flexiRoom_Logo.png">
+</div>
 
 ## 📝 Descrição
 

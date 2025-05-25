@@ -103,13 +103,50 @@
 
 &emsp; O modelo de banco de dados apresentado foi estruturado de forma relacional, com o objetivo de garantir integridade, clareza e escalabilidade na gestão das informações do sistema de reservas de salas.<br><br>&emsp; A tabela `users` armazena os dados dos usuários que realizarão as reservas, utilizando o campo cpf como chave primária, o que garante a unicidade dos registros.<br><br>&emsp; A tabela `rooms` representa as salas disponíveis, contendo atributos como nome, capacidade e status de disponibilidade, também identificadas por uma chave primária (room_id).<br><br>&emsp; A tabela `bookings` centraliza as reservas, relacionando cada uma a um usuário e a uma sala por meio de chaves estrangeiras (user_id e room_id), além de armazenar os horários de início e fim da reserva.<br><br>&emsp; Essa estrutura favorece a normalização dos dados, reduz redundâncias e permite consultas eficientes, como a verificação de disponibilidade de salas ou o histórico de reservas de um usuário. A escolha pelo uso de SERIAL para os identificadores simplifica a geração automática de valores únicos, contribuindo para uma implementação prática e robusta.<br><br>&emsp; Com base na exposição dos modelos relacional e físico, foi possível compreender e justificar as escolhas estruturais adotadas no banco de dados desenvolvido para este projeto. A aplicação desses modelos não apenas garantiu a organização lógica das informações, como também proporcionou uma base sólida para a implementação eficiente do sistema, assegurando integridade, desempenho e escalabilidade no armazenamento e na recuperação dos dados.
 
-### 3.1.1 DB e Models (Semana 5)
+### 3.1.1 DB e Models
 
-_Descreva aqui os Models implementados no sistema web_
+&emsp; Em aplicações que utilizam o padrão de arquitetura MVC (Model-View-Controller), o Model representa a camada responsável por gerenciar os dados e a lógica de negócios da aplicação. Ele serve como uma ponte entre o banco de dados e o restante do sistema, encapsulando as operações de leitura e gravação dos dados.<br><br>&emsp; O Model lida diretamente com a lógica da aplicação e o acesso ao armazenamento de dados, permitindo que outras partes da aplicação se concentrem na apresentação e interação com o usuário.([[9]](#ref9))<br><br>&emsp; Em aplicações web modernas, como as desenvolvidas com Node.js e Express, os Models são frequentemente implementados como classes JavaScript que expõem métodos para executar operações no banco de dados, como inserir, buscar, atualizar e excluir informações.([[10]](#ref10))<br><br>&emsp; Neste projeto, foram definidos três Models principais: Booking, User e Room. Cada um deles representa uma entidade central no sistema de reservas, encapsulando as operações relacionadas a essas entidades.
 
-### 3.2. Arquitetura (Semana 5)
+**1. Booking**<br>&emsp; O Model Booking representa as reservas de salas feitas pelos usuários. Ele interage com a tabela bookings no banco de dados e permite criar, buscar, atualizar e excluir reservas. Cada reserva é composta pelos seguintes campos: booking_id, user_id, room_id, start_date e end_date.
 
-_Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. Atualize sempre que necessário._
+<ins>Principais Métodos:</ins>
+- getAll(): Retorna todas as reservas.
+- getById(id): Retorna uma reserva específica pelo booking_id.
+- create(data): Cria uma nova reserva.
+- update(id, data): Atualiza uma reserva existente.
+- delete(id): Remove uma reserva.
+
+**2. User**<br>O Model User gerencia as informações dos usuários do sistema, permitindo o cadastro, a atualização e a exclusão de usuários, além da consulta de dados individuais ou coletivos. Ele interage com a tabela users no banco de dados, onde cada usuário é identificado por um id único e possui os campos name, lastname, email, cpf e password.
+
+<ins>PrincipaisMétodos:</ins>
+- getAll(): Retorna todos os usuários cadastrados.
+- getById(id): Retorna os dados de um usuário específico.
+- create(data): Cria um novo usuário.
+- update(id, data): Atualiza os dados de um usuário.
+- delete(id): Remove um usuário.
+
+**3. Room**<br>O Model Room representa as salas disponíveis para reserva. Ele interage com a tabela rooms no banco de dados e gerencia informações como o nome da sala, sua capacidade e demais atributos definidos.
+
+<ins>Métodos principais:</ins>
+- getAll(): Retorna todas as salas.
+- getById(id): Retorna os detalhes de uma sala específica.
+- create(data): Cadastra uma nova sala.
+- update(id, data): Atualiza os dados de uma sala existente.
+- delete(id): Remove uma sala.
+
+&emsp; Os Models são uma parte essencial de qualquer sistema que utiliza o padrão MVC, pois eles concentram toda a lógica de acesso aos dados de maneira estruturada e reutilizável. O uso de Models, como demonstrado neste projeto, promove uma separação clara de responsabilidades, facilitando a manutenção e a escalabilidade do sistema. Ao encapsular as operações de banco de dados, os Models garantem que as demais camadas da aplicação possam se concentrar na interface do usuário e na experiência de uso.
+
+### 3.2. Arquitetura
+
+&emsp; O diagrama apresentado ilustra a arquitetura de um sistema web baseado no padrão Model-View-Controller (MVC), uma abordagem amplamente utilizada no desenvolvimento de aplicações por sua capacidade de promover a separação de responsabilidades entre as camadas do sistema.([[12]](#ref12))<br><br>&emsp; O padrão MVC organiza o código em três componentes principais: o Model, que representa a lógica de negócio e a manipulação de dados; a View, responsável pela exibição das informações ao usuário; e o Controller, que atua como um intermediário entre o Model e a View, coordenando as interações entre ambos.([[12]](#ref12))<br><br>&emsp; No contexto da aplicação, observa-se a comunicação entre o cliente, o servidor e o banco de dados, permitindo a manipulação de dados referentes a usuários, reservas e salas, de forma a garantir o correto funcionamento e a escalabilidade da aplicação.
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Figura 3 - Diagrama de Arquitetura MVC</strong></small><br>
+        <img src="/assets/wad/architectureDiagram.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
+</div>
+
+&emsp; O diagrama evidencia uma organização modular e bem estruturada do sistema, que facilita a manutenção, o reaproveitamento de código e a escalabilidade da aplicação.<br><br>&emsp; A divisão clara entre as responsabilidades de Models, Views e Controllers demonstra o compromisso com boas práticas de desenvolvimento e proporciona uma base sólida para a expansão futura da aplicação.<br><br>&emsp; Desta maneira, essa arquitetura permite que alterações em uma camada não impactem diretamente as demais, favorecendo a adaptabilidade do sistema e a integridade dos dados, além de promover uma experiência de usuário eficiente e segura.
 
 **Instruções para criação do diagrama de arquitetura**
 
@@ -124,22 +161,16 @@ _Adicione as setas e explicações sobre como os dados fluem entre o Model, Cont
 &emsp; Os wireframes representam uma etapa fundamental no processo de desenvolvimento de interfaces, pois permitem visualizar a estrutura e a hierarquia dos elementos de uma página antes da implementação visual e funcional.([[6]](#ref6)) Eles funcionam como um esboço funcional, focado na disposição dos componentes e na experiência do usuário, sendo essenciais para validar fluxos de navegação e usabilidade desde as fases iniciais do projeto.([[7]](#ref7)) Além disso, wireframes facilitam a comunicação entre designers, desenvolvedores e stakeholders, reduzindo retrabalhos e garantindo alinhamento de expectativas.([[8]](#ref8))<br><br>&emsp; Abaixo estão as figuras referentes aos Wireframes projetados para esta aplicação.
 
 <div align="center">
-    <small><strong style="font-size: 12px;">Figura 3 - Wireframe da página de Redefinir a senha e colocar o E-Mail para Login</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 4 - Wireframe da página de Redefinir a senha e colocar o E-Mail para Login</strong></small><br>
         <img src="/assets/wad/email-changePassword-page.png"><br>
-    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
-</div>
-<div align="center">
-    <small><strong style="font-size: 12px;">Figura 4 - Wireframe da página de primeiro acesso</strong></small><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 5 - Wireframe da página de primeiro acesso</strong></small><br>
         <img src="/assets/wad/signin-page.png"><br>
-    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
-</div>
-<div align="center">
-    <small><strong style="font-size: 12px;">Figura 5 - Wireframe da página de Login</strong></small><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 6 - Wireframe da página de Login</strong></small><br>
         <img src="/assets/wad/login-page.png"><br>
-    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
-</div>
-<div align="center">
-    <small><strong style="font-size: 12px;">Figura 6 - Wireframe da página do catálogo de salas disponíveis</strong></small><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 7 - Wireframe da página do catálogo de salas disponíveis</strong></small><br>
         <img src="/assets/wad/rooms-catalogue-page.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
 </div>
@@ -151,28 +182,28 @@ _Adicione as setas e explicações sobre como os dados fluem entre o Model, Cont
 &emsp; Para padronizar a estilização e organização do projeto, um guia da estilos que conta com Tipografia, Espaçamentos, Curvatura das Bordas, Paleta de Cores, Sombras e Icones foi desenvolvido, conforme as imagens abaixo.
 
 <div align="center">
-    <small><strong style="font-size: 12px;">Figura 7 - Tipografia</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 8 - Tipografia</strong></small><br>
         <img src="/assets/wad/styles-guide/Typography/Light.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 8 - Espaçamentos</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 9 - Espaçamentos</strong></small><br>
         <img src="/assets/wad/styles-guide/Spacing/Light.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 9 - Curvatura das Bordas</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 10 - Curvatura das Bordas</strong></small><br>
         <img src="/assets/wad/styles-guide/Radius/Light.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 10 - Paleta de Cores no modo Claro</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 11 - Paleta de Cores no modo Claro</strong></small><br>
         <img src="/assets/wad/styles-guide/Colors/Light.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 11 - Paleta de Cores no modo Escuro</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 12 - Paleta de Cores no modo Escuro</strong></small><br>
         <img src="/assets/wad/styles-guide/Colors/Dark.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 12 - Sombras</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 13 - Sombras</strong></small><br>
         <img src="/assets/wad/styles-guide/Shadows/Light.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 13 - Icones no modo Claro</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 14 - Icones no modo Claro</strong></small><br>
         <img src="/assets/wad/styles-guide/Icons/Light.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 14 - Icones no modo Escuro</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 15 - Icones no modo Escuro</strong></small><br>
         <img src="/assets/wad/styles-guide/Icons/Dark.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
 </div>
@@ -184,46 +215,84 @@ _Adicione as setas e explicações sobre como os dados fluem entre o Model, Cont
 &emsp; A partir do Guia de Estilos descrito na seção acima, foram criadas telas que dizem respeito ao protótipo de alta fidelidade do projeto, sendo este o mais próximo da Aplicação Final a ser desenvolvida.<br><br>&emsp; Abaixo encontram-se as telas que compõem este protótipo seguindo a ordem na qual os usuários irão utilizar o sistema. 
 
 <div align="center">
-    <small><strong style="font-size: 12px;">Figura 15 - Página de E-Mail</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 16 - Página de E-Mail</strong></small><br>
         <img src="/assets/wad/Prototype/OnlyE-mailOrResetPassword.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 16 - Página de E-Mail com Senha</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 17 - Página de E-Mail com Senha</strong></small><br>
         <img src="/assets/wad/Prototype/E-mailAndPassword.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 17 - Página de Criação de Senha</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 18 - Página de Criação de Senha</strong></small><br>
         <img src="/assets/wad/Prototype/SignInPage.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 18 - Página com a Lista de Usuários (Administrador)</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 19 - Página com a Lista de Usuários (Administrador)</strong></small><br>
         <img src="/assets/wad/Prototype/UsersList.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 19 - Página de Criação ou Edição de Usuário (Administrador)</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 20 - Página de Criação ou Edição de Usuário (Administrador)</strong></small><br>
         <img src="/assets/wad/Prototype/EditUser.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 20 - Página com a Lista de Salas (Administrador)</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 21 - Página com a Lista de Salas (Administrador)</strong></small><br>
         <img src="/assets/wad/Prototype/RoomsList-AdminPage.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 21 - Página de Criação ou Edição de Sala (Administrador)</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 22 - Página de Criação ou Edição de Sala (Administrador)</strong></small><br>
         <img src="/assets/wad/Prototype/EditRoom.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 22 - Página com a Lista de Salas (Usuário Comum)</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 23 - Página com a Lista de Salas (Usuário Comum)</strong></small><br>
         <img src="/assets/wad/Prototype/RoomsList-UserPage.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 23 - Aba para selecionar período de reserva (Usuário Comum)</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 24 - Aba para selecionar período de reserva (Usuário Comum)</strong></small><br>
         <img src="/assets/wad/Prototype/ReserveRoomTab.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 24 - Pop-Up para confirmar reserva (Usuário Comum)</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 25 - Pop-Up para confirmar reserva (Usuário Comum)</strong></small><br>
         <img src="/assets/wad/Prototype/ConfirmPop-Up.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
-    <small><strong style="font-size: 12px;">Figura 25 - Página para visualizar "Minhas Reservas" (Usuário Comum)</strong></small><br>
+    <small><strong style="font-size: 12px;">Figura 26 - Página para visualizar "Minhas Reservas" (Usuário Comum)</strong></small><br>
         <img src="/assets/wad/Prototype/MyReservedRoomsList-UserPage.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
 </div>
 
 &emsp; Ao clicar [aqui](https://www.figma.com/design/azZNUyJ9Kh1lLk1Qzkhwpd/FlexiRoom---Design-Final?node-id=105-1333&t=o8sS3sQmLiwzmoJB-1) uma página do sistema de edição de imagens Figma será aberta. Nela, encontram-se o guia de estilos, protótipo de alta fidelidade e os componentes que fazem parte das telas.
 
-### 3.6. WebAPI e endpoints (Semana 05)
+### 3.6. WebAPI e endpoints
 
-_Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema._
+&emsp; API é a sigla para Application Programming Interface, que em português significa Interface de Programação de Aplicações. Trata-se de um contrato entre diferentes sistemas, que define como eles podem interagir e compartilhar informações. Em termos mais simples, é uma forma de permitir que diferentes aplicações "conversem" e troquem dados de maneira padronizada.([[11]](#ref11))<br><br>&emsp; A API desenvolvida para este projeto segue o padrão RESTful, utilizando o formato JSON para troca de dados e permitindo a interação com os recursos Users, Bookings e Rooms por meio de operações HTTP. Todas as rotas são prefixadas com `/api/v1/`, garantindo uma estrutura organizada e preparada para futuras versões.<br><br>&emsp; Cada recurso possui um conjunto de endpoints que permite as seguintes operações:
+
+<div align="center">
+<small><strong style="font-size: 12px;">Quadro 3 - Endpoints de Users</strong></small><br>
+
+| Método HTTP | Caminho Base | Ação |
+| --- | --- | --- |
+| GET | /api/v1/users | Lista todos os usuários |
+| GET | /api/v1/users/:id | Buscar um usuário específico por seu ID |
+| POST | /api/v1/users | Cria um novo usuário |
+| PUT | /api/v1/users/:id | Atualiza um usuário existente |
+| DELETE | /api/v1/users/:id | Excluir um usuário existente |
+
+<small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+<small><strong style="font-size: 12px;">Quadro 4 - Endpoints de Bookings</strong></small><br>
+
+| Método HTTP | Caminho Base | Ação |
+| --- | --- | --- |
+| GET | /api/v1/bookings | Lista todos as reservas |
+| GET | /api/v1/bookings/:id | Buscar uma reserva específica por seu ID |
+| POST | /api/v1/bookings | Cria uma nova reserva |
+| PUT | /api/v1/bookings/:id | Atualiza uma reserva existente |
+| DELETE | /api/v1/bookings/:id | Excluir uma reserva existente |
+
+<small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+<small><strong style="font-size: 12px;">Quadro 5 - Endpoints de Rooms</strong></small><br>
+
+| Método HTTP | Caminho Base | Ação |
+| --- | --- | --- |
+| GET | /api/v1/rooms | Lista todos as salas |
+| GET | /api/v1/rooms/:id | Buscar uma sala específica por seu ID |
+| POST | /api/v1/rooms | Cria uma nova sala |
+| PUT | /api/v1/rooms/:id | Atualiza uma sala existente |
+| DELETE | /api/v1/rooms/:id | Excluir uma sala existente |
+
+<small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
+</div>
+
+&emsp; A estrutura dos endpoints desta API foi cuidadosamente projetada para ser simples, padronizada e escalável, facilitando o acesso e a manipulação dos dados de usuários, reservas e salas. Ao seguir as convenções RESTful e utilizar padrões claros de URL e métodos HTTP, o sistema garante uma comunicação consistente e eficiente entre o frontend e o backend. Esse modelo de endpoints torna o desenvolvimento mais ágil, reduz erros de integração e prepara a aplicação para evoluir de forma sustentável, à medida que novas funcionalidades forem sendo adicionadas no futuro.
 
 ### 3.7 Interface e Navegação (Semana 07)
 
@@ -253,3 +322,7 @@ _Relacione também quaisquer outras ideias que você tenha para melhorias futura
 <br><a name="ref6">[6]:</a> Garrett, J. J. (2011). The elements of user experience: User-centered design for the web and beyond (2nd ed.). New Riders. https://www.peachpit.com/store/elements-of-user-experience-user-centered-design-for-the-9780321683687
 <br><a name="ref7">[7]:</a> Tidwell, J. (2010). Designing interfaces: Patterns for effective interaction design (2nd ed.). O’Reilly Media. https://www.oreilly.com/library/view/designing-interfaces-2nd/9781449319274/
 <br><a name="ref8">[8]:</a> Krug, S. (2014). Don't make me think, revisited: A common sense approach to web usability (3rd ed.). New Riders. https://www.sensible.com/dmmt.html
+<br><a name="ref9">[9]:</a> Freeman, E., Freeman, E., Bates, B., & Sierra, K. (2004). Head First Design Patterns. O'Reilly Media.
+<br><a name="ref10">[10]:</a> Flanagan, D. (2020). JavaScript: The Definitive Guide (7ª ed.). O'Reilly Media.
+<br><a name="ref11">[11]:</a> Amazon Web Services. O que é uma API?. https://aws.amazon.com/pt/what-is/api/
+<br><a name="ref12">[12]:</a> Fowler, M. (2006). Patterns of Enterprise Application Architecture. Addison-Wesley Professional.
