@@ -1,0 +1,9 @@
+<style>
+  <%- include('../css/toastNotification.css') %>
+</style>
+<div id="toast-notification" class="toast-notification<%= variant ? ' ' + variant : '' %>">
+  <% if (icon) { %>
+    <i class="bi <%= icon %> toast-notification-icon"></i>
+  <% } %>
+  <span id="toast-notification-text"><%= text || '' %></span>
+</div>

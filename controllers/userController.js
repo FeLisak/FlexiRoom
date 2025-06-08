@@ -112,10 +112,7 @@ const UserController = {
       const user = await UserModel.verifyUserCredentials(email, password);
 
       if (!user) {
-        return res.render("login", {
-          error: "Usuário ou senha inválidos!",
-          email,
-        });
+        return res.status(404).json({ error: "Usuário não encontrado!" });
       }
 
       if (user.isadmin) {

@@ -8,7 +8,11 @@
       <i class="bi bi-exclamation-triangle" style="font-size: 6rem; color: #FFE066;"></i>
     </div>
     <div class="popup-message" id="popup-message">
-      <%= typeof message !== 'undefined' ? message : 'Are you sure you want to book the room for day mm/dd/yy at hh:mm?' %>
+      <% if (variant === 'remove-reservation') { %>
+        Are you sure you want to remove this reservation?
+      <% } else { %>
+        <%= typeof message !== 'undefined' ? message : 'Are you sure you want to book the room for day mm/dd/yy at hh:mm?' %>
+      <% } %>
     </div>
     <div class="popup-buttons">
       <%- include('../components/button', {

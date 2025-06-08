@@ -31,8 +31,11 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 0px;
   align-items: left;
+}
+.login-form.password {
+  gap: 24px;
 }
 .login-form .input-container {
   width: 100%;

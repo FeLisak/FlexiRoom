@@ -19,6 +19,7 @@
   text-align: center;
   min-width: 350px;
   max-width: 95vw;
+  min-height: 400px;
 }
 
 .popup-icon {

@@ -1,0 +1,18 @@
+<style>
+  <%- include('../css/menu-box.css') %>
+</style>
+
+<div class="menu-box<%= typeof variant !== 'undefined' && variant ? ' ' + variant : '' %>">
+  <% items.forEach(function(item) { %>
+    <button
+      type="button"
+      class="menu-box-item<%= item.danger ? ' danger' : '' %>"
+      onclick="<%= item.onclick || '' %>"
+    >
+      <% if (item.icon) { %>
+        <i class="bi <%= item.icon %> menu-box-icon"></i>
+      <% } %>
+      <span><%= item.text %></span>
+    </button>
+  <% }); %>
+</div>

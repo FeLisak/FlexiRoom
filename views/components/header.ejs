@@ -4,27 +4,34 @@
 
 <header>
   <div class="logo-container">
-    <img src="../images/flexiRoom-Logo.png" alt="Logo" />
+    <img src="/images/flexiRoom-Logo.png" alt="Logo" />
   </div>
-    <div class="screen-mode-container">
-      <i id="theme-icon" class="bi bi-moon"></i>
-    </div>
-    <% if (isUserLoggedIn === true) { %>
-    <div class="user-container">
+  <div class="screen-mode-container">
+    <i id="theme-icon" class="bi bi-moon"></i>
+  </div>
+  <% if (isUserLoggedIn === true) { %>
+    <div class="user-container" id="user-container">
       <p><%= username %></p>
+      <div class="user-menu-popup" id="user-menu-popup">
+        <%- include('menu-box', {
+          items: [
+            { icon: 'bi-pencil-square', text: 'Change Password', onclick: "window.location='/password'" },
+            { icon: 'bi-box-arrow-right', text: 'Logout', danger: true, onclick: "window.location='/logout'" }
+          ]
+        }) %>
+      </div>
     </div>
   <% } %>
   <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const modeBtn = document.querySelector(".screen-mode-container");
-        const icon = document.getElementById("theme-icon");
-        if (!modeBtn || !icon) return;
+    document.addEventListener("DOMContentLoaded", function () {
+      const modeBtn = document.querySelector(".screen-mode-container");
+      const icon = document.getElementById("theme-icon");
+      if (modeBtn && icon) {
         if (document.body.getAttribute("data-theme") === "dark") {
           icon.className = "bi bi-sun";
         } else {
           icon.className = "bi bi-moon";
         }
-
         modeBtn.addEventListener("click", function () {
           const body = document.body;
           const currentTheme = body.getAttribute("data-theme");
@@ -38,6 +45,21 @@
             localStorage.setItem("theme", "dark");
           }
         });
-      });
-    </script>
+      }
+
+      const userContainer = document.getElementById("user-container");
+      const userMenu = document.getElementById("user-menu-popup");
+      if (userContainer && userMenu) {
+        userContainer.addEventListener("click", function (e) {
+          e.stopPropagation();
+          userMenu.classList.toggle("open");
+        });
+        document.addEventListener("click", function (e) {
+          if (!userMenu.contains(e.target)) {
+            userMenu.classList.remove("open");
+          }
+        });
+      }
+    });
+  </script>
 </header>

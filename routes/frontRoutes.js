@@ -26,12 +26,24 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/password", (req, res) => {
+  const user = req.session.user || {};
   res.render(path.join(__dirname, "../views/layout/main"), {
     pageTitle: "Login",
     content: path.join(__dirname, "../views/pages/password"),
-    user: req.session.user || null,
-    id,
-    email,
+    user,
+    id: user.id || null,
+    email: user.email || null,
+  });
+});
+
+router.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Erro ao destruir a sessão:", err);
+      return res.status(500).send("Erro ao sair.");
+    }
+    res.clearCookie("connect.sid");
+    res.redirect("/");
   });
 });
 

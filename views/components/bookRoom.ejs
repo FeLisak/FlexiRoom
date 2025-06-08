@@ -52,8 +52,11 @@
 <%- include('../components/confirmationPopUp', {
   id: "reservation-confirm-popup",
   cancelId: "popup-cancel-btn",
-  confirmId: "popup-confirm-btn"
+  confirmId: "popup-confirm-btn",
+  variant: ""
 }) %>
+<%- include('../components/toastNotification', { variant: '', icon: '', text: '' }) %>
+<script src="/js/toast.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const overlay = document.getElementById("room-reservation-panel-overlay");
@@ -166,7 +169,6 @@
           body: JSON.stringify(pendingBookingData)
         });
 
-        // Always close the popups
         confirmPopup.style.display = "none";
         document.getElementById('room-reservation-panel-overlay').style.display = 'none';
         pendingBookingData = null;
@@ -181,39 +183,5 @@
         showToast("Error: Could not reserve.", "error");
       }
     });
-
-    function showToast(message, type) {
-      let toast = document.createElement("div");
-      toast.className = "custom-toast " + (type === "success" ? "success" : "error");
-      toast.textContent = message;
-      document.body.appendChild(toast);
-      setTimeout(() => {
-        toast.classList.add("show");
-      }, 10);
-      setTimeout(() => {
-        toast.classList.remove("show");
-        setTimeout(() => toast.remove(), 300);
-      }, 2500);
-    }
   });
 </script>
-<style>
-.custom-toast {
-  position: fixed;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #44474F;
-  color: #fff;
-  padding: 16px 32px;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 2000;
-  transition: opacity 0.3s;
-}
-.custom-toast.success { background: var(--colors-feedbacks-green-100); }
-.custom-toast.error { background: var(--colors-feedbacks-red-100); }
-.custom-toast.show { opacity: 1; }
-</style>
