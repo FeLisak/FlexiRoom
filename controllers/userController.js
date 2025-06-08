@@ -1,82 +1,158 @@
-const db = require("../config/db");
+const UserModel = require("../models/userModel");
+const path = require("path");
 
-const getAllUsers = async (req, res) => {
-  try {
-    const result = await db.query("SELECT * FROM users");
-    res.status(200).json(result.rows);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-const getUserById = async (req, res) => {
-  try {
-    const result = await db.query("SELECT * FROM users WHERE id = $1", [
-      req.params.id,
-    ]);
-    const user = result.rows[0];
-    if (user) {
-      res.status(200).json(user);
-    } else {
-      res.status(404).json({ error: "Usuário não encontrado" });
+const UserController = {
+  async getAllUsers(req, res) {
+    try {
+      const user = await UserModel.getAllUsers();
+      return res.status(200).json(user);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erro ao listar usuários!" });
     }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+  },
 
-const createUser = async (req, res) => {
-  try {
-    const { name, lastname, email, cpf, password } = req.body;
-    const result = await db.query(
-      "INSERT INTO users (name, lastname, email, cpf, password) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-      [name, lastname, email, cpf, password]
-    );
-    res.status(201).json(result.rows[0]);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-const updateUser = async (req, res) => {
-  try {
-    const { name, lastname, email, cpf, password } = req.body;
-    const result = await db.query(
-      "UPDATE users SET name = $1, lastname = $2, email = $3, cpf = $4, password = $5 WHERE id = $6 RETURNING *",
-      [name, lastname, email, cpf, password, req.params.id]
-    );
-    const updatedUser = result.rows[0];
-    if (updatedUser) {
-      res.status(200).json(updatedUser);
-    } else {
-      res.status(404).json({ error: "Usuário não encontrado" });
+  async getUserById(req, res) {
+    try {
+      const user = await UserModel.getUserById(req.params.id);
+      if (!user) {
+        return res.status(404).json({ error: "Usuário não encontrado!" });
+      }
+      return res.status(200).json(user);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erro ao obter o usuário!" });
     }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+  },
 
-const deleteUser = async (req, res) => {
-  try {
-    const result = await db.query(
-      "DELETE FROM users WHERE id = $1 RETURNING *",
-      [req.params.id]
-    );
-    const deletedUser = result.rows[0];
-    if (deletedUser) {
-      res.status(200).json(deletedUser);
-    } else {
-      res.status(404).json({ error: "Usuário não encontrado" });
+  async getUserByEmail(req, res) {
+    try {
+      const { email } = req.body;
+      const user = await UserModel.getUserByEmail({ email });
+      if (!user) {
+        return res.status(404).json({ error: "Usuário não encontrado!" });
+      }
+      req.session.user = {
+        id: user.id,
+        name: user.name,
+        surname: user.lastname,
+        email: user.email,
+        isAdmin: user.isadmin,
+      };
+      if (user.password == null) {
+        req.session.passwordUser = {
+          email: user.email,
+          id: user.id,
+        };
+        return res.render(path.join(__dirname, "../views/layout/main"), {
+          pageTitle: "Login",
+          content: path.join(__dirname, "../views/pages/password"),
+          user: req.session.user || null,
+          id: req.session.passwordUser?.id,
+          email: req.session.passwordUser?.email,
+        });
+      }
+      return res.render(path.join(__dirname, "../views/layout/main"), {
+        pageTitle: "Login",
+        content: path.join(__dirname, "../views/pages/login-with-password"),
+        user: req.session.user || null,
+        id: user.id,
+        email: user.email,
+        isAdmin: req.session.user?.isAdmin,
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erro ao obter o usuário!" });
     }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  },
+
+  async createUser(req, res) {
+    try {
+      const updatedUser = await UserModel.createUser(req.body);
+      return res.status(201).json(updatedUser);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erro ao criar o usuário!" });
+    }
+  },
+
+  async createPassword(req, res) {
+    try {
+      const { password, confirmPassword } = req.body;
+      const id = req.session.user?.id;
+      const email = req.session.user?.email;
+
+      if (password !== confirmPassword) {
+        return res.render("createPassword", {
+          error: "As senhas não coincidem!",
+          email,
+          id,
+        });
+      } else {
+        const updatedUser = await UserModel.createPassword(password, id);
+        return res.render(path.join(__dirname, "../views/layout/main"), {
+          pageTitle: "Login",
+          content: path.join(__dirname, "../views/pages/login-with-password"),
+          user: req.session.user || null,
+          id: req.session.passwordUser?.id,
+          email: updatedUser.email,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      return res
+        .status(500)
+        .json({ error: "Erro ao criar a senha do usuário!" });
+    }
+  },
+
+  async verifyUserCredentials(req, res) {
+    try {
+      const { email, password } = req.body;
+      const user = await UserModel.verifyUserCredentials(email, password);
+
+      if (!user) {
+        return res.render("login", {
+          error: "Usuário ou senha inválidos!",
+          email,
+        });
+      }
+
+      if (user.isadmin) {
+        return res.redirect("/users");
+      } else {
+        return res.redirect("/rooms-to-reserve");
+      }
+    } catch (error) {
+      console.error(error);
+      return res
+        .status(500)
+        .json({ error: "Erro ao verificar as credenciais do usuário!" });
+    }
+  },
+
+  async updateUser(req, res) {
+    try {
+      const updatedUser = await UserModel.updateUser(req.params.id, req.body);
+      return res.status(201).json(updatedUser);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erro ao editar o usuário!" });
+    }
+  },
+
+  async deleteUserById(req, res) {
+    try {
+      const user = await UserModel.deleteUserById(req.params.id);
+      if (!user) {
+        return res.status(404).json({ error: "Usuário não encontrado!" });
+      }
+      return res.status(200).json({ message: "Usuário deletado com sucesso!" });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erro ao deletar o usuário!" });
+    }
+  },
 };
 
-module.exports = {
-  getAllUsers,
-  getUserById,
-  createUser,
-  updateUser,
-  deleteUser,
-};
+module.exports = UserController;
