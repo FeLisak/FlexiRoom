@@ -1,7 +1,7 @@
-const { Pool } = require('pg');
-require('dotenv').config();
+const { Pool } = require("pg");
+require("dotenv").config();
 
-const isSSL = process.env.DB_SSL === 'true';
+const isSSL = process.env.DB_SSL === "true";
 
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -13,6 +13,7 @@ const pool = new Pool({
 });
 
 module.exports = {
+  pool,
   query: (text, params) => pool.query(text, params),
   connect: () => pool.connect(),
 };
