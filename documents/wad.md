@@ -161,16 +161,16 @@
 
 <div align="center">
     <small><strong style="font-size: 12px;">Figura 4 - Wireframe da página de Redefinir a senha e colocar o E-Mail para Login</strong></small><br>
-        <img src="/assets/wad/email-changePassword-page.png"><br>
+        <img src="/assets/wad/wireframes/email-changePassword-page.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
     <small><strong style="font-size: 12px;">Figura 5 - Wireframe da página de primeiro acesso</strong></small><br>
-        <img src="/assets/wad/signin-page.png"><br>
+        <img src="/assets/wad/wireframes/signin-page.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
     <small><strong style="font-size: 12px;">Figura 6 - Wireframe da página de Login</strong></small><br>
-        <img src="/assets/wad/login-page.png"><br>
+        <img src="/assets/wad/wireframes/login-page.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
     <small><strong style="font-size: 12px;">Figura 7 - Wireframe da página do catálogo de salas disponíveis</strong></small><br>
-        <img src="/assets/wad/rooms-catalogue-page.png"><br>
+        <img src="/assets/wad/wireframes/rooms-catalogue-page.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
 </div>
 
@@ -261,7 +261,10 @@
 | Método HTTP | Caminho Base | Ação |
 | --- | --- | --- |
 | GET | /api/v1/users | Lista todos os usuários |
+| GET | /api/v1/users/email | Buscar um usuário específico por seu E-Mail |
 | GET | /api/v1/users/:id | Buscar um usuário específico por seu ID |
+| POST | /api/v1/users/createPassword/:id | Cria a senha de um usuário |
+| POST | /api/v1/users/verifyCredentials | Verifica as credencias do usuário no sistema de Login |
 | POST | /api/v1/users | Cria um novo usuário |
 | PUT | /api/v1/users/:id | Atualiza um usuário existente |
 | DELETE | /api/v1/users/:id | Excluir um usuário existente |
@@ -293,9 +296,81 @@
 
 &emsp; A estrutura dos endpoints desta API foi cuidadosamente projetada para ser simples, padronizada e escalável, facilitando o acesso e a manipulação dos dados de usuários, reservas e salas. Ao seguir as convenções RESTful e utilizar padrões claros de URL e métodos HTTP, o sistema garante uma comunicação consistente e eficiente entre o frontend e o backend. Esse modelo de endpoints torna o desenvolvimento mais ágil, reduz erros de integração e prepara a aplicação para evoluir de forma sustentável, à medida que novas funcionalidades forem sendo adicionadas no futuro.
 
-### 3.7 Interface e Navegação (Semana 07)
+### 3.7 Interface e Navegação
 
-_Descreva e ilustre aqui o desenvolvimento do frontend do sistema web, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar._
+&emsp; Durante a última semana, o desenvolvimento do frontend do FlexiRoom avançou de forma significativa, consolidando a interface e a navegação do sistema. Foram implementadas as principais telas do sistema web, incluindo as páginas de login, criação de senha, catálogo de salas, reservas e visualização de reservas do usuário. Cada tela foi construída seguindo o guia de estilos definido previamente, garantindo uma experiência visual consistente, moderna e responsiva.<br><br>&emsp; A navegação entre as páginas foi estruturada para ser intuitiva, permitindo que o usuário acesse rapidamente as funcionalidades mais importantes, como reservar uma sala ou consultar suas reservas. Componentes reutilizáveis, como botões, campos de formulário, pop-ups de confirmação e menus de navegação, foram criados para facilitar a manutenção e a escalabilidade do sistema.<br><br>&emsp; Além disso, foi dada atenção especial à integração entre frontend e backend, garantindo que as informações exibidas estejam sempre atualizadas e que as ações do usuário sejam refletidas corretamente no banco de dados. O fluxo de autenticação e logout foi implementado de forma segura, protegendo os dados do usuário e garantindo uma experiência confiável.<br><br>&emsp; Por fim, foram realizados testes de usabilidade e ajustes finos na interface, corrigindo pequenos bugs e melhorando a experiência geral do usuário. O resultado é um frontend funcional, alinhado ao protótipo de alta fidelidade e caminhando para ser utilizado em ambiente real.<br><br>&emsp; Abaixo, prints de tela ilustram as principais páginas e fluxos de navegação do sistema FlexiRoom.
+
+**Light Mode:**
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Figura 27 - Página de E-Mail</strong></small><br>
+        <img src="/assets/wad/web/emailPage/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 28 - Página de Criação de Senha</strong></small><br>
+        <img src="/assets/wad/web/createPassword/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 29 - Página de E-Mail com Senha</strong></small><br>
+        <img src="/assets/wad/web/login/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 30 - Página com a Lista de Usuários (Administrador)</strong></small><br>
+        <img src="/assets/wad/web/users/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 31 - Página com a Lista de Salas (Administrador)</strong></small><br>
+        <img src="/assets/wad/web/roomsList/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 32 - Página com a Lista de Salas (Usuário Comum)</strong></small><br>
+        <img src="/assets/wad/web/roomsToReserve/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 33 - Aba para selecionar período de reserva (Usuário Comum)</strong></small><br>
+        <img src="/assets/wad/web/reserveRoom/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 34 - Pop-Up para confirmar reserva (Usuário Comum)</strong></small><br>
+        <img src="/assets/wad/web/popUp/light-mode.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 35 - Página para visualizar "Minhas Reservas" (Usuário Comum)</strong></small><br>
+        <img src="/assets/wad/web/myReservedRooms/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 36 - Menu do Usuário (Usuário Comum)</strong></small><br>
+        <img src="/assets/wad/web/menu/Light.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
+</div>
+
+**Dark Mode:**
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Figura 27 - Página de E-Mail</strong></small><br>
+        <img src="/assets/wad/web/emailPage/Dark.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 28 - Página de Criação de Senha</strong></small><br>
+        <img src="/assets/wad/web/createPassword/Dark.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 29 - Página de E-Mail com Senha</strong></small><br>
+        <img src="/assets/wad/web/login/Dark.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 30 - Página com a Lista de Usuários (Administrador)</strong></small><br>
+        <img src="/assets/wad/web/users/Dark.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 31 - Página com a Lista de Salas (Administrador)</strong></small><br>
+        <img src="/assets/wad/web/roomsList/Dark.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 32 - Página com a Lista de Salas (Usuário Comum)</strong></small><br>
+        <img src="/assets/wad/web/roomsToReserve/Dark.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 33 - Aba para selecionar período de reserva (Usuário Comum)</strong></small><br>
+        <img src="/assets/wad/web/reserveRoom/Dark.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 34 - Pop-Up para confirmar reserva (Usuário Comum)</strong></small><br>
+        <img src="/assets/wad/web/popUp/dark-mode.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 35 - Página para visualizar "Minhas Reservas" (Usuário Comum)</strong></small><br>
+        <img src="/assets/wad/web/myReservedRooms/Dark.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small><br>
+    <small><strong style="font-size: 12px;">Figura 36 - Menu do Usuário (Usuário Comum)</strong></small><br>
+        <img src="/assets/wad/web/menu/Dark.png"><br>
+    <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
+</div>
+
+&emsp; Apesar dos avanços significativos no desenvolvimento da interface e navegação do FlexiRoom, algumas páginas e menus previstos no protótipo ainda não puderam ser implementadas nesta etapa. Essas telas, consideradas importantes para a experiência completa do usuário, estão planejadas para as próximas fases do projeto e serão desenvolvidas futuramente, garantindo a evolução contínua e o aprimoramento do sistema.
 
 ## <a name="c4"></a>4. Desenvolvimento da Aplicação Web (Semana 8)
 
