@@ -22,6 +22,8 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
 - <b>documents/</b>: aqui estão todos os documentos do projeto, como o Web Application Document (WAD) bem como documentos complementares, na pasta "other".
 
+- <b>middleware/</b>: funções intermediárias que processam requisições antes de chegarem às rotas finais, como autenticação e validação.
+
 - <b>models/</b>: definição de modelos de dados.
 
 - <b>routes/</b>: definição das rotas do sistema.
@@ -29,10 +31,6 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 - <b>scripts/</b>: arquivos de JavaScript públicos.
 
 - <b>services/</b>: serviços auxiliares do sistema.
-
-- <b>styles/</b>: rquivos CSS públicos.
-
-- <b>tests/</b>: arquivos de testes unitários.
 
 - <b>views/</b>: views da aplicação.
 
@@ -68,11 +66,17 @@ git clone https://github.com/FeLisak/FlexiRoom.git
 npm install
 ```
 
-&emsp; Isso instalará todas as dependências definidas no arquivo <b>package.json</b> que são necessárias para rodar o projeto. Agora o projeto já está pronto para ser modificado. Caso ainda deseje iniciar a aplicação, digite o comando abaixo no terminal:
+&emsp; Isso instalará todas as dependências definidas no arquivo <b>package.json</b> que são necessárias para rodar o projeto. Agora o projeto já está pronto para ser modificado. Para iniciar o projeto, antes é necessário criar o banco de dados. Para isso, utilize o comando abaixo:
+
+```sh
+npm run init-db
+```
+
+Caso ainda deseje iniciar a aplicação, digite o comando abaixo no terminal:
 
 ```sh
 npm start
 ```
 
-- Agora você pode acessar a aplicação através do link http://localhost:3000/
 - O servidor está online.
+- Agora você pode acessar a aplicação através do link http://localhost:3000/
