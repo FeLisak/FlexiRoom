@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS users (
   name varchar(50),
   lastname varchar(100),
   email varchar(100),
-  cpf INT UNIQUE,
+  isAdmin  BOOLEAN DEFAULT false,
   password varchar(36)
 );
 
@@ -24,11 +24,22 @@ CREATE TABLE IF NOT EXISTS bookings (
   FOREIGN KEY (room_id) REFERENCES rooms (room_id)
 );
 
-INSERT INTO users (name, lastname, email)
+CREATE TABLE IF NOT EXISTS "session" (
+  "sid" varchar NOT NULL COLLATE "default",
+  "sess" json NOT NULL,
+  "expire" timestamp(6) NOT NULL
+)
+WITH (OIDS=FALSE);
+
+ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid");
+
+CREATE INDEX "IDX_session_expire" ON "session" ("expire");
+
+INSERT INTO users (name, lastname, email, isAdmin)
 VALUES 
-  ('Felipe', 'Karpovas Lisak','felipe.lisak@sou.inteli.edu.br'),
-  ('Joseph', 'Mansur','joseph.mansur@sou.inteli.edu.br'),
-  ('Lorenzo', 'Ferrari Aggio','lorezo.aggio@sou.inteli.edu.br');
+  ('Felipe', 'Karpovas Lisak','felipe.lisak@sou.inteli.edu.br', true),
+  ('Joseph', 'Mansur','joseph.mansur@sou.inteli.edu.br', false),
+  ('Lorenzo', 'Ferrari Aggio','lorezo.aggio@sou.inteli.edu.br', false);
 
 INSERT INTO rooms (room_name, status, capacity)
 VALUES 
