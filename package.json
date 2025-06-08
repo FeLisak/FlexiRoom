@@ -11,9 +11,12 @@
     "init-db": "node scripts/runSQLScript.js"
   },
   "dependencies": {
+    "connect-pg-simple": "^10.0.0",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.10",
     "express": "^4.17.1",
+    "express-session": "^1.18.1",
+    "node-fetch": "^3.3.2",
     "pg": "^8.7.1"
   },
   "devDependencies": {
