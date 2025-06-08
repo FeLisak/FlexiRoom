@@ -95,13 +95,14 @@
 
 <div align="center">
     <small><strong style="font-size: 12px;">Figura 2 - Modelo relacional do Banco de Dados</strong></small><br>
-        <img src="/assets/modelo-banco.png"><br>
+        <img src="/assets/wad/databaseDiagram.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
 </div>
 
 <br>&emsp; <a href="/scripts/init.sql">Clique aqui</a> para acessar o modelo físico com o Schema do Banco de Dados do projeto.
 
-&emsp; O modelo de banco de dados apresentado foi estruturado de forma relacional, com o objetivo de garantir integridade, clareza e escalabilidade na gestão das informações do sistema de reservas de salas.<br><br>&emsp; A tabela `users` armazena os dados dos usuários que realizarão as reservas, utilizando o campo cpf como chave primária, o que garante a unicidade dos registros.<br><br>&emsp; A tabela `rooms` representa as salas disponíveis, contendo atributos como nome, capacidade e status de disponibilidade, também identificadas por uma chave primária (room_id).<br><br>&emsp; A tabela `bookings` centraliza as reservas, relacionando cada uma a um usuário e a uma sala por meio de chaves estrangeiras (user_id e room_id), além de armazenar os horários de início e fim da reserva.<br><br>&emsp; Essa estrutura favorece a normalização dos dados, reduz redundâncias e permite consultas eficientes, como a verificação de disponibilidade de salas ou o histórico de reservas de um usuário. A escolha pelo uso de SERIAL para os identificadores simplifica a geração automática de valores únicos, contribuindo para uma implementação prática e robusta.<br><br>&emsp; Com base na exposição dos modelos relacional e físico, foi possível compreender e justificar as escolhas estruturais adotadas no banco de dados desenvolvido para este projeto. A aplicação desses modelos não apenas garantiu a organização lógica das informações, como também proporcionou uma base sólida para a implementação eficiente do sistema, assegurando integridade, desempenho e escalabilidade no armazenamento e na recuperação dos dados.
+&emsp; O modelo de banco de dados apresentado foi estruturado de forma relacional, com o objetivo de garantir integridade, clareza e escalabilidade na gestão das informações do sistema de reservas de salas.<br><br>&emsp; A tabela `users` armazena os dados dos usuários que realizarão as reservas, utilizando o campo `id` como chave primária, o que garante a unicidade dos registros. Além dos dados pessoais como `name`, `lastname` e `email`, há um campo `isAdmin` para distinguir usuários administradores e um campo `password` para autenticação.<br><br>&emsp; A tabela `rooms` representa as salas disponíveis, contendo atributos como `room_name`, `status` (indicando a disponibilidade) e `capacity`. Cada sala é identificada de forma única por meio do campo `room_id`, definido como chave primária.<br><br>&emsp; A tabela `bookings` centraliza as informações de reserva, relacionando cada agendamento a um usuário (`user_id`) e a uma sala (`room_id`) por meio de chaves estrangeiras. Também são registrados os horários de início (`start_date`) e fim (`end_date`) de cada reserva.<br><br>&emsp; A tabela `session` foi incluída para gerenciar sessões ativas no sistema, utilizando o campo `sid` como chave primária. Ela armazena dados da sessão em formato JSON (`sess`) e a data de expiração (`expire`), o que permite controlar a autenticação de usuários no sistema.<br><br>&emsp; Essa estrutura favorece a normalização dos dados, reduz redundâncias e permite consultas eficientes, como a verificação de disponibilidade de salas ou o histórico de reservas de um usuário. A escolha pelo uso de `SERIAL` para os identificadores simplifica a geração automática de valores únicos, contribuindo para uma implementação prática e robusta.<br><br>&emsp; Com base na exposição dos modelos relacional e físico, foi possível compreender e justificar as escolhas estruturais adotadas no banco de dados desenvolvido para este projeto. A aplicação desses modelos não apenas garantiu a organização lógica das informações, como também proporcionou uma base sólida para a implementação eficiente do sistema, assegurando integridade, desempenho e escalabilidade no armazenamento e na recuperação dos dados.
+
 
 ### 3.1.1 DB e Models
 
@@ -142,7 +143,7 @@
 
 <div align="center">
     <small><strong style="font-size: 12px;">Figura 3 - Diagrama de Arquitetura MVC</strong></small><br>
-        <img src="/assets/wad/architectureDiagram.png"><br>
+        <img src="/assets/wad/mvcArchitectureDiagram.png"><br>
     <small style="margin-top: 4px; font-size: 10px;">Fonte: O autor, 2025.</small>
 </div>
 
@@ -153,8 +154,6 @@
 - **Model**: A camada que lida com a lógica de negócios e interage com o banco de dados.
 - **View**: A camada responsável pela interface de usuário.
 - **Controller**: A camada que recebe as requisições, processa as ações e atualiza o modelo e a visualização.
-
-_Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View._
 
 ### 3.3. Wireframes
 
