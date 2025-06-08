@@ -1,0 +1,127 @@
+.table-attribute {
+  display: flex;
+  align-items: center;
+  background: var(--colors-neutral-0);
+  padding: 20px 28px;
+  border-bottom: 2px solid var(--colors-neutral-3);
+  font-family: Inter, sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.table-attribute.user {
+  justify-content: flex-start;
+  gap: 18px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-name {
+  color: var(--colors-neutral-8);
+  font-family: Lora;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.user-email {
+  color: var(--colors-neutral-6);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.user-menu {
+  margin-left: auto;
+  color: var(--colors-neutral-5);
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.table-attribute.room,
+.table-attribute.room-date {
+  gap: 14px;
+  align-items: center;
+  position: relative;
+}
+
+.room-id {
+  color: var(--colors-neutral-3);
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.room-name {
+  color: var(--colors-neutral-6);
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  margin-right: auto;
+}
+
+.room-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  padding: 4px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  width: 122px;
+  margin-right: 18px;
+  color: var(--colors-neutral-8);
+  text-align: center;
+}
+
+.room-status.free {
+  background: var(--colors-feedbacks-green-100);
+}
+
+.room-status.in-use {
+  background: var(--colors-feedbacks-yellow-100);
+}
+
+.room-status.cleaning {
+  background: var(--colors-feedbacks-orange-100);
+}
+
+.room-status.closed {
+  background: var(--colors-feedbacks-red-100);
+}
+
+.room-date-badge,
+.room-hour-badge {
+  background: var(--colors-feedbacks-blue-100);
+  color: var(--colors-neutral-0);
+  border-radius: var(--radius-base);
+  padding: 4px 14px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+}
+
+.room-menu {
+  color: var(--colors-neutral-5);
+  font-size: 28px;
+  margin-left: 16px;
+  cursor: pointer;
+}
+
+.table-list {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}

@@ -1,0 +1,31 @@
+<style>
+  <%- include('../css/style.css') %>
+  <%- include('../css/login.css') %>
+</style>
+
+<div class="login-center-container">
+  <div class="login-card">
+    <div class="login-logo">
+      <img src="/images/flexiRoom-Logo.png" alt="Logo" />
+    </div>
+    <form class="login-form" action="/api/v1/users/email" method="post">
+      <div class="input-container">
+        <%- include('../components/input', { 
+              placeholder: "E-mail", 
+              variant: "Default", 
+              name: "email",
+              type: "email",
+              required: true 
+        }) %>
+      </div>
+      <br>
+      <div class="button-container">
+        <%- include('../components/button', { 
+              placeholder: "Next", 
+              type: "submit", 
+              variant: "Default" 
+        }) %>
+      </div>
+    </form>
+  </div>
+</div>

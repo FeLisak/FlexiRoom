@@ -1,0 +1,49 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  padding: 16px 20px;
+  border-radius: var(--radius-base);
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn.default {
+  background: var(--colors-feedbacks-blue-100);
+  color: var(--colors-neutral-0);
+}
+
+.btn.default:hover {
+  background: var(--colors-feedbacks-blue-50);
+}
+
+.btn.blocked {
+  background: var(--colors-neutral-2);
+  color: var(--colors-neutral-1);
+  cursor: not-allowed;
+}
+
+.btn.confirm {
+  background: var(--colors-feedbacks-green-100);
+  color: var(--colors-neutral-0);
+}
+
+.btn.confirm:hover {
+  background: var(--colors-feedbacks-green-50);
+}
+
+.btn.cancel {
+  background: var(--colors-neutral-0);
+  color: var(--colors-feedbacks-red-100);
+  border: 2px solid var(--colors-neutral-0);
+}
+
+.btn.cancel:hover {
+  background: var(--colors-neutral-1);
+}

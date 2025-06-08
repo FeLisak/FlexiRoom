@@ -1,0 +1,38 @@
+<style>
+  <%- include('../css/tableAtribute.css') %>
+</style>
+
+<% if (variant === 'user') { %>
+  <div class="table-attribute user">
+    <div class="user-info">
+      <div class="user-name truncate-text"><%= name %></div>
+      <div class="user-email truncate-text"><%= email %></div>
+    </div>
+    <div class="user-menu">
+    <span class="room-menu"><i class="bi bi-three-dots-vertical"></i></span>
+    </div>
+  </div>
+<% } else if (variant === 'room-admin') { %>
+  <div class="table-attribute room">
+    <span class="room-id">#<%= roomId %></span>
+    <span class="room-name"><%= roomName %></span>
+    <% if (roomStatus === 'Free') { %>
+      <span class="room-status free"><%= roomStatus %></span>
+      <% } else if (roomStatus === 'In use') { %>
+      <span class="room-status in-use"><%= roomStatus %></span>
+      <% } else if (roomStatus === 'Cleaning') { %>
+      <span class="room-status cleaning"><%= roomStatus %></span>
+      <% } else if (roomStatus === 'Closed') { %>
+      <span class="room-status closed"><%= roomStatus %></span>
+    <% } %>
+    <span class="room-menu"><i class="bi bi-three-dots-vertical"></i></span>
+  </div>
+<% } else if (variant === 'room-user') { %>
+  <div class="table-attribute room-date">
+    <span class="room-id">#<%= roomId %></span>
+    <span class="room-name"><%= roomName %></span>
+    <span class="room-date-badge"><%= bookedDate %></span>
+    <span class="room-hour-badge"><%= bookedTime %></span>
+    <span class="room-menu"><i class="bi bi-three-dots-vertical"></i></span>
+  </div>
+<% } %>

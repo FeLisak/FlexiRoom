@@ -1,0 +1,25 @@
+<style>
+  <%- include('../css/card.css') %>
+</style>
+
+<div class="room-card">
+  <div class="room-card-image"></div>
+  <div class="room-card-title">
+    <%= roomName %>
+  </div>
+  <div class="room-card-members">
+    <i class="bi bi-people"></i>
+    <%= capacity %> Members
+  </div>
+  <div class="room-card-footer">
+    <%- include('../components/button', {
+      placeholder: "Reserve",
+      type: "button",
+      variant: "Reserve",
+      className: "reserve-btn",
+      dataRoomId: room_id,
+      dataRoomName: roomName,
+      dataCapacity: capacity
+    }) %>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<style>
+  <%- include('../css/style.css') %>
+  <%- include('../css/myReservedRooms.css') %>
+</style>
+
+<div class="container">
+  <div class="content">
+    <div class="rooms-header">
+      <%- include('../components/tab', { variant: 'myreserved-active' }) %>
+    </div>
+    <%- include('../components/input', { placeholder: "Search", variant: "Search" }) %>
+    <div class="table-scroll-x">
+      <%- include('../components/tableHeader') %>
+      <div class="table-content">
+        <% 
+          const now = new Date();
+          bookings.forEach(function(booking) { 
+            const startDate = new Date(booking.start_date);
+            const endDate = new Date(booking.end_date);
+            if (endDate > now) {
+              const bookedDate = `${(startDate.getMonth()+1).toString().padStart(2, '0')}/${startDate.getDate().toString().padStart(2, '0')}/${startDate.getFullYear()}`;
+              const bookedTime = startDate.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', hour12: false });
+              const roomName = rooms.find(room => room.room_id === booking.room_id)?.room_name || 'Unknown Room';
+        %>
+          <%- include('../components/tableAtribute', {
+            variant: 'room-user',
+            roomId: booking.booking_id,
+            roomName: roomName,
+            bookedDate: bookedDate,
+            bookedTime: bookedTime
+          }) %>
+        <% 
+            }
+          }) 
+        %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,60 +1,130 @@
-/* Reset básico para remover estilos padrão do navegador */
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:wght@400;600;700&display=swap");
+
+:root {
+  --spacing-025: 4px;
+  --spacing-05: 8px;
+  --spacing-075: 16px;
+  --spacing-1: 24px;
+  --spacing-15: 32px;
+  --spacing-2: 40px;
+  --spacing-3: 48px;
+  --spacing-4: 56px;
+  --spacing-5: 64px;
+  --spacing-6: 72px;
+  --spacing-7: 80px;
+  --spacing-8: 96px;
+  --spacing-9: 104px;
+  --spacing-10: 112px;
+  --spacing-11: 128px;
+  --spacing-12: 160px;
+  --font-family-highlight: Lora;
+  --font-family-base: Poppins;
+  --font-weight-bold: 700;
+  --font-weight-medium: 600;
+  --font-weight-regular: 400;
+  --font-size-giant: 80px;
+  --font-size-display: 64px;
+  --font-size-xxxl: 52px;
+  --font-size-xxl: 40px;
+  --font-size-xl: 32px;
+  --font-size-lg: 24px;
+  --font-size-md: 20px;
+  --font-size-sm: 18px;
+  --font-size-xs: 16px;
+  --font-size-xxs: 14px;
+  --font-size-xxxs: 12px;
+  --radius-xs: 4px;
+  --radius-base: 8px;
+  --radius-lg: 16px;
+  --radius-full: 24px;
+}
+
+body[data-theme="light"] {
+  --colors-brand-blue: #4fbaff;
+  --colors-brand-gray: #e4e8f0;
+  --colors-primary-50: #e3f5ff;
+  --colors-primary-100: #a6deff;
+  --colors-primary-200: #4fbaff;
+  --colors-primary-300: #1f90d1;
+  --colors-primary-400: #136b9c;
+  --colors-secundary-50: #ffffff;
+  --colors-secundary-100: #e4e8f0;
+  --colors-secundary-200: #cbd2db;
+  --colors-secundary-300: #b1b9c5;
+  --colors-secundary-400: #979faf;
+  --colors-feedbacks-blue-50: rgba(79, 186, 255, 0.5);
+  --colors-feedbacks-blue-100: #4fbaff;
+  --colors-feedbacks-green-50: rgba(79, 213, 142, 0.5);
+  --colors-feedbacks-green-100: #4fd58e;
+  --colors-feedbacks-yellow-50: rgba(255, 230, 128, 0.5);
+  --colors-feedbacks-yellow-100: #ffe680;
+  --colors-feedbacks-orange-50: rgba(255, 184, 107, 0.5);
+  --colors-feedbacks-orange-100: #ffb86b;
+  --colors-feedbacks-red-50: rgba(255, 107, 107, 0.5);
+  --colors-feedbacks-red-100: #ff6b6b;
+  --colors-neutral-0: #ffffff;
+  --colors-neutral-1: #e4e8f0;
+  --colors-neutral-2: #cbd2db;
+  --colors-neutral-3: #b1b9c5;
+  --colors-neutral-4: #979faf;
+  --colors-neutral-5: #7d8599;
+  --colors-neutral-6: #636a83;
+  --colors-neutral-7: #4a4f5e;
+  --colors-neutral-8: #3a3c40;
+  --shadow-level-1: 0px 4px 8px 0px #2229261f;
+  --shadow-level-2: 0px 8px 24px 0px #2229261f;
+  --shadow-level-3: 0px 16px 24px 0px #2229261f;
+  --shadow-level-4: 0px 16px 48px 0px #22292629;
+}
+
+body[data-theme="dark"] {
+  --colors-brand-blue: #4fbaff;
+  --colors-brand-gray: #e4e8f0;
+  --colors-primary-50: #136b9c;
+  --colors-primary-100: #1f90d1;
+  --colors-primary-200: #4fbaff;
+  --colors-primary-300: #a6deff;
+  --colors-primary-400: #e3f5ff;
+  --colors-secundary-50: #979faf;
+  --colors-secundary-100: #b1b9c5;
+  --colors-secundary-200: #cbd2db;
+  --colors-secundary-300: #e4e8f0;
+  --colors-secundary-400: #ffffff;
+  --colors-feedbacks-blue-50: #4fbaff;
+  --colors-feedbacks-blue-100: rgba(79, 186, 255, 0.5);
+  --colors-feedbacks-green-50: #4fd58e;
+  --colors-feedbacks-green-100: rgba(79, 213, 142, 0.5);
+  --colors-feedbacks-yellow-50: #ffe680;
+  --colors-feedbacks-yellow-100: rgba(255, 230, 128, 0.5);
+  --colors-feedbacks-orange-50: #ffb86b;
+  --colors-feedbacks-orange-100: rgba(255, 184, 107, 0.5);
+  --colors-feedbacks-red-50: #ff6b6b;
+  --colors-feedbacks-red-100: rgba(255, 107, 107, 0.5);
+  --colors-neutral-0: #3a3c40;
+  --colors-neutral-1: #4a4f5e;
+  --colors-neutral-2: #636a83;
+  --colors-neutral-3: #7d8599;
+  --colors-neutral-4: #979faf;
+  --colors-neutral-5: #b1b9c5;
+  --colors-neutral-6: #cbd2db;
+  --colors-neutral-7: #e4e8f0;
+  --colors-neutral-8: #ffffff;
+  --shadow-level-1: 0px 4px 8px 0px #222926;
+  --shadow-level-2: 0px 8px 24px 0px #222926;
+  --shadow-level-3: 0px 16px 24px 0px #222926;
+  --shadow-level-4: 0px 16px 48px 0px #222926;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Estilo para o corpo da página */
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f0f0f0;
-    color: #333;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Estilo para o cabeçalho */
-  header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-  }
-  
-  /* Estilo para a navegação dentro do cabeçalho */
-  header nav ul {
-    list-style-type: none;
-  }
-  
-  header nav ul li {
-    display: inline;
-    margin-right: 20px;
-  }
-  
-  header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  header nav ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Estilo para o conteúdo principal */
-  main {
-    padding: 20px;
-  }
-  
-  /* Estilo para o rodapé */
-  footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-base);
+  line-height: 1.6;
+  background-color: var(--colors-neutral-0);
+  margin: 0;
+  padding: 0;
+}

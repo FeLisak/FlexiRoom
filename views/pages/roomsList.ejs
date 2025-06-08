@@ -1,0 +1,21 @@
+<style>
+  <%- include('../css/style.css') %>
+  <%- include('../css/roomsList.css') %>
+</style>
+
+<div class="container">
+  <div class="content">
+    <div class="rooms-header">
+      <%- include('../components/tab', { variant: 'rooms-active' }) %>
+    </div>
+    <%- include('../components/input', { placeholder: "Search", variant: "Search" }) %>
+        <% rooms.forEach(function(room) { %>
+          <%- include('../components/tableAtribute', {
+            variant: 'room-admin',
+            roomId: room.room_id || 'N/A',
+            roomName: room.room_name || 'Unknown Room',
+            roomStatus: room.status || 'N/A',
+          }) %>
+        <% }) %>
+  </div>
+</div>

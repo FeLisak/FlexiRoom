@@ -1,0 +1,28 @@
+<style>
+  <%- include('../css/style.css') %>
+  <%- include('../css/roomsToReserve.css') %>
+</style>
+
+<div class="container">
+  <div class="content">
+    <div class="rooms-header">
+      <%- include('../components/tab', { variant: 'reserve-active' }) %>
+    </div>
+    <%- include('../components/input', { placeholder: "Search", variant: "Search" }) %>
+    <div class="cards">    
+        <% rooms.forEach(function(room) { %>
+          <%- include('../components/card', {
+            room_id: room.room_id,
+            roomName: room.room_name || 'Unknown Room',
+            capacity: room.capacity || 'N/A'
+          }) %>
+        <% }) %>
+      </div>
+      <%- include('../components/bookRoom', {
+        roomId: '',
+        roomName: '',
+        members: '',
+        date: ''
+      }) %>
+  </div>
+</div>

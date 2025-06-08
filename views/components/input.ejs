@@ -1,0 +1,66 @@
+<style>
+  <%- include('../css/input.css') %>
+</style>
+
+<% if (variant === 'Default') { %>
+<div class="input default">
+  <input type="<%= typeof type !== 'undefined' ? type : 'text' %>" name="<%=
+  typeof name !== 'undefined' ? name : '' %>" placeholder=" " <%=typeof required
+  !=='undefined' && required ? 'required' : '' %> />
+  <span> <%= placeholder %> </span>
+</div>
+<% } else if (variant === 'Unabled') { %>
+<div class="input unabled">
+  <input
+    type="<%= typeof type !== 'undefined' ? type : 'text' %>"
+    name="<%= typeof name !== 'undefined' ? name : '' %>"
+    value="<%= typeof value !== 'undefined' ? value : '' %>"
+    placeholder="<%= placeholder %>"
+    readonly
+  />
+</div>
+<% } else if (variant === 'Search') { %>
+<div class="input search">
+  <input type="text" placeholder=" " />
+  <span
+    ><i class="bi bi-search"></i>
+    <%= placeholder %>
+  </span>
+</div>
+<% } else if (variant === 'Date') { %>
+<div class="input date">
+  <input
+    type="date"
+    name="<%= typeof name !== 'undefined' ? name : 'date' %>"
+    required
+    autocomplete="off"
+    value="<%= typeof value !== 'undefined' ? value : '' %>"
+  />
+  <span><%= placeholder %></span>
+</div>
+<% } else if (variant === 'Dropdown') { %>
+<div class="input dropdown">
+  <select
+    name="<%= typeof name !== 'undefined' ? name : '' %>"
+    id="<%= typeof id !== 'undefined' ? id : (name ? 'reservation-' + name : '') %>"
+    <%= typeof required !=='undefined' && required ? 'required' : '' %>
+  >
+    <option value=""><%= placeholder %></option>
+    <% if (typeof options !== 'undefined' && Array.isArray(options)) {
+      options.forEach(function(opt) { %>
+        <option value="<%= opt.value || opt %>"><%= opt.label || opt %></option>
+    <% }); } %>
+  </select>
+  <i class="bi bi-chevron-down custom-chevron"></i>
+</div>
+<% } else if (variant === 'Pagination') { %>
+<div class="pagination">
+  <div class="previous">
+    <i class="bi bi-chevron-left"></i>
+  </div>
+  <div class="page-number"><%= placeholder %></div>
+  <div class="next inactive">
+    <i class="bi bi-chevron-right"></i>
+  </div>
+</div>
+<% } %>

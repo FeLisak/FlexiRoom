@@ -1,0 +1,45 @@
+<style>
+  <%- include('../css/style.css') %>
+  <%- include('../css/users.css') %>
+</style>
+
+<div class="container">
+  <div class="content users-content">
+    <div class="users-header">
+      <%- include('../components/tab', { variant: 'users-active' }) %>
+    </div>
+    <div class="users-search">
+      <%- include('../components/input', { placeholder: "Search", variant: "Search" }) %>
+    </div>
+    <div class="users-list">
+      <% users.forEach(function(user) { %>
+        <%- include('../components/tableAtribute', {
+          variant: 'user',
+          name: `${user.name}  ${user.lastname}`,
+          email: user.email
+        }) %>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<script>
+function truncateText(selector, maxLength) {
+  document.querySelectorAll(selector).forEach(el => {
+    const original = el.getAttribute('data-original') || el.textContent;
+    if (window.innerWidth <= 900 && original.length > maxLength) {
+      el.setAttribute('data-original', original);
+      el.textContent = original.slice(0, maxLength) + '...';
+    } else if (window.innerWidth > 900 && el.getAttribute('data-original')) {
+      el.textContent = el.getAttribute('data-original');
+    }
+  });
+}
+
+function handleResize() {
+  truncateText('.truncate-text', 15);
+}
+
+window.addEventListener('resize', handleResize);
+window.addEventListener('DOMContentLoaded', handleResize);
+</script>

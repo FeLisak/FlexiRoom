@@ -1,0 +1,30 @@
+<style>
+  <%- include('../css/tab.css') %>
+</style>
+<script>
+  function goTo(path) {
+    window.location.href = path;
+  }
+</script>
+
+<% if (variant === 'users-active') { %>
+  <div class="tab-nav">
+    <div class="tab-item active">USERS</div>
+    <div class="tab-item" onclick="goTo('/rooms-list')">ROOMS</div>
+  </div>
+<% } else if (variant === 'rooms-active') { %>
+  <div class="tab-nav">
+    <div class="tab-item" onclick="goTo('/users')">USERS</div>
+    <div class="tab-item active">ROOMS</div>
+  </div>
+<% } else if (variant === 'reserve-active') { %>
+  <div class="tab-nav">
+    <div class="tab-item active">ROOMS TO RESERVE</div>
+    <div class="tab-item" onclick="goTo('/my-reserved-rooms')">MY RESERVED ROOMS</div>
+  </div>
+<% } else if (variant === 'myreserved-active') { %>
+  <div class="tab-nav">
+    <div class="tab-item" onclick="goTo('/rooms-to-reserve')">ROOMS TO RESERVE</div>
+    <div class="tab-item active">MY RESERVED ROOMS</div>
+  </div>
+<% } %>

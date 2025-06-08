@@ -1,0 +1,219 @@
+<style>
+  <%- include('../css/bookRoom.css') %>
+</style>
+
+<div id="room-reservation-panel-overlay" class="panel-overlay">
+  <div id="room-reservation-panel" class="room-reservation-panel">
+    <span class="close-btn" id="close-panel-btn">&times;</span>
+    <div class="room-image"></div>
+    <h2 class="room-title"><%= roomName %></h2>
+    <div class="room-members">
+      <i class="bi bi-people"></i>
+      <span><%= members %> Members</span>
+    </div>
+    <form id="reservation-form" data-room-id="<%= roomId %>">
+      <div class="input-group">
+        <%- include('../components/input', {
+          placeholder: "Date (dd/mm/yyyy)",
+          type: "date",
+          name: "date",
+          required: true,
+          value: date || "",
+          variant: "Date"
+        }) %>
+      </div>
+      <div class="input-group" id="time-select-group" style="display: none;">
+        <%- include('../components/input', {
+          placeholder: "Time",
+          type: "dropdown",
+          name: "time",
+          required: true,
+          options: typeof timeOptions !== 'undefined' ? timeOptions : [],
+          variant: "Dropdown"
+        }) %>
+      </div>
+      <div class="button-group">
+        <%- include('../components/button', {
+          placeholder: "Cancel",
+          type: "button",
+          variant: "Cancel",
+          id: "cancel-btn"
+        }) %>
+        <%- include('../components/button', {
+          placeholder: "Reserve",
+          type: "submit",
+          variant: "Default",
+          className: "reserve-btn"
+        }) %>
+      </div>
+    </form>
+  </div>
+</div>
+<%- include('../components/confirmationPopUp', {
+  id: "reservation-confirm-popup",
+  cancelId: "popup-cancel-btn",
+  confirmId: "popup-confirm-btn"
+}) %>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const overlay = document.getElementById("room-reservation-panel-overlay");
+    const closeBtn = document.getElementById("close-panel-btn");
+    const cancelBtn = document.getElementById("cancel-btn");
+    function closePanel() {
+      overlay.style.display = "none";
+    }
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay) closePanel();
+    });
+    closeBtn.addEventListener("click", closePanel);
+    if (cancelBtn) cancelBtn.addEventListener("click", closePanel);
+
+    const reservationForm = document.getElementById("reservation-form");
+    const confirmPopup = document.getElementById("reservation-confirm-popup");
+    const popupMessage = document.getElementById("popup-message");
+    const popupCancelBtn = document.getElementById("popup-cancel-btn");
+    const popupConfirmBtn = document.getElementById("popup-confirm-btn");
+
+    let pendingBookingData = null;
+
+    const dateInput = document.querySelector('input[name="date"]');
+    const timeSelect = document.getElementById("reservation-time");
+    const timeSelectGroup = document.getElementById("time-select-group");
+
+    const ALL_TIMES = [
+      "08:00", "09:00", "10:00", "11:00", "12:00",
+      "13:00", "14:00", "15:00", "16:00", "17:00"
+    ];
+
+    function getBookedHours(bookings) {
+      return bookings.map(b => {
+        const d = new Date(b.start_date);
+        return d.toISOString().slice(11, 16);
+      });
+    }
+
+    if (dateInput && timeSelect && reservationForm) {
+      dateInput.addEventListener("change", async function () {
+        const date = dateInput.value;
+        const roomId = reservationForm.getAttribute('data-room-id');
+        if (!date || !roomId) {
+          timeSelectGroup.style.display = "none";
+          return;
+        }
+        const res = await fetch(`/api/v1/bookings/by-room-date?roomId=${roomId}&date=${date}`);
+        const bookings = await res.json();
+
+        const bookedTimes = getBookedHours(bookings);
+
+        const availableTimes = ALL_TIMES.filter(time => !bookedTimes.includes(time));
+
+        timeSelect.innerHTML = '<option value="">Time</option>';
+        availableTimes.forEach(function(time) {
+          const [hour, minute] = time.split(':');
+          const dateObj = new Date();
+          dateObj.setHours(Number(hour), Number(minute), 0, 0);
+          const localTime = dateObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', hour12: false });
+
+          const opt = document.createElement('option');
+          opt.value = time;
+          opt.textContent = localTime;
+          timeSelect.appendChild(opt);
+        });
+
+        timeSelectGroup.style.display = "flex";
+      });
+    }
+
+    reservationForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const roomId = reservationForm.getAttribute('data-room-id');
+      const date = reservationForm.querySelector('input[name="date"]').value;
+      const time = reservationForm.querySelector('select[name="time"]').value;
+
+      if (!date || !time) return;
+
+      const [year, month, day] = date.split('-');
+      const [hour, minute] = time.split(':');
+      const startDate = new Date(Date.UTC(year, month - 1, day, hour, minute));
+      const endDate = new Date(startDate.getTime() + 60 * 60 * 1000);
+
+      pendingBookingData = {
+        user_id: window.currentUserId,
+        room_id: roomId,
+        start_date: startDate.toISOString(),
+        end_date: endDate.toISOString()
+      };
+
+      const formattedDate = `${month.padStart(2, '0')}/${day.padStart(2, '0')}/${year.slice(2)}`;
+      const formattedTime = `${hour}:${minute}`;
+      popupMessage.textContent = `Are you sure you want to book the room for day ${formattedDate} at ${formattedTime}?`;
+
+      confirmPopup.style.display = "flex";
+    });
+
+    popupCancelBtn.addEventListener("click", function () {
+      confirmPopup.style.display = "none";
+      pendingBookingData = null;
+    });
+
+    popupConfirmBtn.addEventListener("click", async function () {
+      if (!pendingBookingData) return;
+      try {
+        const res = await fetch("/api/v1/bookings", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(pendingBookingData)
+        });
+
+        // Always close the popups
+        confirmPopup.style.display = "none";
+        document.getElementById('room-reservation-panel-overlay').style.display = 'none';
+        pendingBookingData = null;
+
+        if (res.ok) {
+          showToast("Reservation successful!", "success");
+        } else {
+          const error = await res.json();
+          showToast("Error: " + (error.error || "Could not reserve."), "error");
+        }
+      } catch (err) {
+        showToast("Error: Could not reserve.", "error");
+      }
+    });
+
+    function showToast(message, type) {
+      let toast = document.createElement("div");
+      toast.className = "custom-toast " + (type === "success" ? "success" : "error");
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add("show");
+      }, 10);
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+  });
+</script>
+<style>
+.custom-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #44474F;
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2000;
+  transition: opacity 0.3s;
+}
+.custom-toast.success { background: var(--colors-feedbacks-green-100); }
+.custom-toast.error { background: var(--colors-feedbacks-red-100); }
+.custom-toast.show { opacity: 1; }
+</style>

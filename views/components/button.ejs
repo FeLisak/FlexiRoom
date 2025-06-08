@@ -1,0 +1,62 @@
+<style>
+  <%- include('../css/button.css') %>
+</style>
+
+<% if (variant === 'Default') { %>
+<button 
+  class="btn default"
+  type="<%= typeof type !== 'undefined' ? type : 'button' %>"
+>
+  <%= placeholder %>
+</button>
+<% } else if (variant === 'Reserve') { %>
+<button
+  type="<%= typeof type !== 'undefined' ? type : 'button' %>"
+  class="btn default reserve-btn"
+  <% if (typeof id !== 'undefined') { %> id="<%= id %>" <% } %>
+  <% if (typeof dataRoomId !== 'undefined') { %> data-room-id="<%= dataRoomId %>" <% } %>
+  <% if (typeof dataRoomName !== 'undefined') { %> data-room-name="<%= dataRoomName %>" <% } %>
+  <% if (typeof dataCapacity !== 'undefined') { %> data-capacity="<%= dataCapacity %>" <% } %>
+>
+  <%= placeholder %>
+</button>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    document.querySelectorAll('.reserve-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(event) {
+        event.preventDefault();
+        const roomId = btn.getAttribute('data-room-id');
+        const roomName = btn.getAttribute('data-room-name');
+        const members = btn.getAttribute('data-capacity');
+
+        document.getElementById('room-reservation-panel-overlay').style.display = 'flex';
+
+        document.querySelector('#room-reservation-panel .room-title').textContent = roomName;
+        document.querySelector('#room-reservation-panel .room-members span').textContent = members + ' Members';
+        document.getElementById('reservation-form').setAttribute('data-room-id', roomId);
+        document.querySelector('input[name="date"]').value = '';
+        document.getElementById('reservation-time').innerHTML = '<option value="">Time</option>';
+      });
+    });
+  });
+</script>
+<% } else if (variant === 'Blocked') { %>
+<button class="btn blocked" disabled><%= placeholder %></button>
+<% } else if (variant === 'Confirm') { %>
+<button
+  type="<%= typeof type !== 'undefined' ? type : 'button' %>"
+  id="<%= typeof id !== 'undefined' ? id : '' %>"
+  class="btn confirm"
+>
+  <%= placeholder %>
+</button>
+<% } else if (variant === 'Cancel') { %>
+<button
+  type="<%= typeof type !== 'undefined' ? type : 'button' %>"
+  id="<%= typeof id !== 'undefined' ? id : '' %>"
+  class="btn cancel"
+>
+  <%= placeholder %>
+</button>
+<% } %>

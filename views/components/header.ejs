@@ -1,9 +1,43 @@
+<style>
+  <%- include('../css/header.css') %>
+</style>
+
 <header>
-  <nav>
-    <ul>
-      <li><a href="/">Página Inicial</a></li>
-      <li><a href="/about">Sobre Nós</a></li>
-      <!-- Adicione outras opções de navegação conforme necessário -->
-    </ul>
-  </nav>
+  <div class="logo-container">
+    <img src="../images/flexiRoom-Logo.png" alt="Logo" />
+  </div>
+    <div class="screen-mode-container">
+      <i id="theme-icon" class="bi bi-moon"></i>
+    </div>
+    <% if (isUserLoggedIn === true) { %>
+    <div class="user-container">
+      <p><%= username %></p>
+    </div>
+  <% } %>
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const modeBtn = document.querySelector(".screen-mode-container");
+        const icon = document.getElementById("theme-icon");
+        if (!modeBtn || !icon) return;
+        if (document.body.getAttribute("data-theme") === "dark") {
+          icon.className = "bi bi-sun";
+        } else {
+          icon.className = "bi bi-moon";
+        }
+
+        modeBtn.addEventListener("click", function () {
+          const body = document.body;
+          const currentTheme = body.getAttribute("data-theme");
+          if (currentTheme === "dark") {
+            body.setAttribute("data-theme", "light");
+            icon.className = "bi bi-moon";
+            localStorage.setItem("theme", "light");
+          } else {
+            body.setAttribute("data-theme", "dark");
+            icon.className = "bi bi-sun";
+            localStorage.setItem("theme", "dark");
+          }
+        });
+      });
+    </script>
 </header>
