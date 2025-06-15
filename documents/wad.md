@@ -372,17 +372,19 @@
 
 &emsp; Apesar dos avanços significativos no desenvolvimento da interface e navegação do FlexiRoom, algumas páginas e menus previstos no protótipo ainda não puderam ser implementadas nesta etapa. Essas telas, consideradas importantes para a experiência completa do usuário, estão planejadas para as próximas fases do projeto e serão desenvolvidas futuramente, garantindo a evolução contínua e o aprimoramento do sistema.
 
-## <a name="c4"></a>4. Desenvolvimento da Aplicação Web (Semana 8)
+## <a name="c4"></a>4. Desenvolvimento da Aplicação Web
 
-### 4.1 Demonstração do Sistema Web (Semana 8)
+### 4.1 Demonstração do Sistema Web
 
-_VIDEO: Insira o link do vídeo demonstrativo nesta seção_
-_Descreva e ilustre aqui o desenvolvimento do sistema web completo, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar._
+&emsp; O vídeo a seguir apresenta o sistema web flexiRoom em pleno funcionamento, demonstrando sua interface e principais funcionalidades, como o cadastro, o login e a listagem de salas. A aplicação foi desenvolvida com base na arquitetura MVC, utilizando fetch API para a comunicação entre front-end e back-end. As informações são armazenadas em um banco de dados relacional. A interface é responsiva e intuitiva, permitindo uma navegação fluida e eficiente.
 
-### 4.2 Conclusões e Trabalhos Futuros (Semana 8)
+Clique [aqui](https://drive.google.com/file/d/1gb8GuKgLOVASiQyDVcYIIQc1QJZngRMS/view?usp=sharing) para acessar o vídeo.
 
-_Indique pontos fortes e pontos a melhorar de maneira geral._
-_Relacione também quaisquer outras ideias que você tenha para melhorias futuras._
+&emsp; O sistema executa operações CRUD (Create, Read, Update e Delete) com estabilidade e clareza, oferecendo uma experiência de uso consistente. O controle das rotas, aliado ao tratamento de erros e à separação das camadas lógica e visual, garante integridade e manutenibilidade ao código. Entre os principais desafios superados, destacam-se o tratamento de dados recebidos da API pelo Front-End de maneira a exibir datas, nomes e outras informações seguindo o protótipo de Alta Fidelidade.
+
+### 4.2 Conclusões e Trabalhos Futuros
+
+&emsp; O sistema flexiRoom apresenta como ponto forte a organização baseada no padrão MVC, a separação eficiente entre front-end e back-end, e a implementação funcional das principais operações, como cadastro, listagem e exclusão de salas. A aplicação já oferece uma boa base para expansão, com código limpo e estrutura modular.<br><br>&emsp; Como ponto a melhorar, destaca-se a ausência de testes automatizados, cuja implementação será fundamental para garantir a confiabilidade do sistema em futuras alterações ou adições de funcionalidades.<br><br>&emsp; Entre os próximos passos, está o desenvolvimento de um aplicativo mobile utilizando React Native, com foco na mobilidade e acessibilidade da gestão de salas. Também será incluída uma área de configurações para salas, permitindo definir parâmetros como capacidade e disponibilidade, além de uma seção de configurações de usuários, com controle de permissões.<br><br>&emsp; Outras melhorias previstas incluem ajustes no funcionamento das barras de pesquisa e menus de gerenciamento, com o objetivo de tornar a navegação mais intuitiva e eficiente para o usuário. Essas melhorias visam otimizar a usabilidade do sistema e garantir uma experiência mais fluida na interação com os dados.
 
 ## <a name="c5"></a>5. Referências
 

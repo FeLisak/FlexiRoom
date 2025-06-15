@@ -6,10 +6,6 @@
 
 &emsp; Este projeto apresenta um Sistema de Reserva de Salas para Agendamentos, desenvolvido com o objetivo de automatizar e otimizar a gestão de espaços em ambientes corporativos. A solução foi idealizada a partir da identificação de problemas recorrentes, como a dificuldade na coordenação de horários, o uso ineficiente das salas e a falta de transparência na disponibilidade dos ambientes. O sistema oferece uma plataforma centralizada, com interface intuitiva, permitindo agendamentos rápidos, consultas em tempo real e melhor aproveitamento dos recursos físicos da empresa, promovendo maior organização e eficiência nas rotinas internas.
 
-## 📝 Link de demonstração
-
-Em breve...
-
 ## 📁 Estrutura de pastas
 
 Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
